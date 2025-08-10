@@ -2,14 +2,14 @@
 "LOGO_LEFT": [
     {
       "title": "Logo Izquierda",
-      "image": "image/logo-izquierda.png",
+      "image": "image/logo-izquierda.jpg",
       "url": "https://www.example.com"
     }
   ],
 "LOGO_RIGHT": [
     {
       "title": "Logo Derecha",
-      "image": "image/logo-derecha.png",
+      "image": "image/logo-derecha.jpg",
       "url": "https://www.example.com"
     }
   ],
