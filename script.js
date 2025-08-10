@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     // Cargar el archivo JSON de imágenes
     fetch('data.json') // Asegúrate de que tu archivo JSON se llama 'data.json' y esté en la misma carpeta
@@ -12,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Crear los elementos de las imágenes y añadirlas al contenedor
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.url;  // Asume que cada objeto en "MOVIL" tiene un campo "url"
-                imgElement.alt = image.name; // Asume que cada objeto tiene un nombre
+                imgElement.src = image.image;  // Asume que cada objeto en "MOVIL" tiene un campo "url"
+                imgElement.alt = image.title; // Asume que cada objeto tiene un nombre
                 imgElement.classList.add('scroll-item');
 
                 scrollWrapper.appendChild(imgElement);
@@ -22,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Duplicar las imágenes para crear el efecto de bucle infinito
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.url;
-                imgElement.alt = image.name;
+                imgElement.src = image.image;
+                imgElement.alt = image.title;
                 imgElement.classList.add('scroll-item');
 
                 scrollWrapper.appendChild(imgElement);
