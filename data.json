@@ -1,0 +1,15 @@
+
+{
+  "MOVIL": [
+    {"image": "ruta_a_imagen1.jpg"},
+    {"image": "ruta_a_imagen2.jpg"},
+    {"image": "ruta_a_imagen3.jpg"},
+    {"image": "ruta_a_imagen4.jpg"},
+    {"image": "ruta_a_imagen5.jpg"},
+    {"image": "ruta_a_imagen6.jpg"},
+    {"image": "ruta_a_imagen7.jpg"},
+    {"image": "ruta_a_imagen8.jpg"},
+    {"image": "ruta_a_imagen9.jpg"},
+    {"image": "ruta_a_imagen10.jpg"}
+  ]
+}

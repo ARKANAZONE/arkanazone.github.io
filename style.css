@@ -1,0 +1,86 @@
+/* Estilos generales */
+
+/* Fondo negro para toda la página */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Color de texto blanco */
+}
+
+/* Cabecera */
+
+/* Centrado de los elementos en la cabecera */
+header {
+    display: flex;
+    justify-content: center; /* Centra todo el contenido */
+    align-items: center;
+    flex-direction: column; /* Alineación vertical */
+    padding: 20px 0; /* Relleno superior e inferior */
+    text-align: center; /* Asegura que el texto se centre */
+}
+
+/* Estilos para el título principal */
+.header-title h1, .header-title h2, .header-title p {
+    margin: 5px 0; /* Márgenes pequeños entre cada fila */
+}
+
+/* Estilos para la primera fila */
+.header-title h1 {
+    font-size: 40px; /* Tamaño de letra para la primera fila */
+}
+
+.white {
+    color: #fff; /* Color blanco */
+}
+
+.celeste {
+    color: #00BFFF; /* Color celeste */
+}
+
+/* Estilos para la segunda fila */
+.header-title h2 {
+    font-size: 28px; /* Tamaño de letra para la segunda fila */
+}
+
+/* Estilos para la tercera fila */
+.header-title p {
+    font-size: 14px; /* Tamaño de letra para la tercera fila */
+}
+
+.header-title .white {
+    color: #fff;
+}
+
+.header-title .celeste {
+    color: #00BFFF;
+
+}
+/* Estilos para la fila de portadas */
+.scroll-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.scroll-wrapper {
+    display: flex;
+    animation: scrollEffect 30s linear infinite;
+}
+
+.scroll-item {
+    width: 130px;
+    height: 190px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+/* Animación para el efecto de scroll infinito */
+@keyframes scrollEffect {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
