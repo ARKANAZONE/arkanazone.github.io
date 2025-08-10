@@ -1,14 +1,20 @@
 {
-
-"LOGO": [
+"LOGO_LEFT": [
     {
-      "title": "Película 1",
-      "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/pelicula1"
+      "title": "Logo Izquierda",
+      "image": "image/logo-izquierda.png",
+      "url": "https://www.example.com"
     }
   ],
-  "MOVIL": [
+"LOGO_RIGHT": [
     {
+      "title": "Logo Derecha",
+      "image": "image/logo-derecha.png",
+      "url": "https://www.example.com"
+    }
+  ],
+  
+"MOVIL": [    {
       "title": "Película 1",
       "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/pelicula1"
