@@ -67,11 +67,14 @@ header {
     display: flex;
     animation: scrollEffect 30s linear infinite;
 }
-
+/* Pausar la animación al pasar el mouse sobre el contenedor */
+.scroll-wrapper:hover {
+    animation-play-state: paused; /* Detiene la animación */
+}
 .scroll-item {
     width: 130px;
     height: 190px;
-    margin-right: 10px;
+    margin-right: 10px; /* Espacio entre las imágenes */
     object-fit: cover;
 }
 
