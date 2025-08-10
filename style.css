@@ -13,24 +13,14 @@ body {
 /* Centrado de los elementos en la cabecera */
 header {
     display: flex;
-    justify-content: space-between; /* Centra todo el contenido */
+    justify-content: center; /* Centra todo el contenido */
     align-items: center;
     flex-direction: column; /* Alineación vertical */
-    padding: 20px 50px; /* Relleno superior e inferior */
+    padding: 20px 0; /* Relleno superior e inferior */
     text-align: center; /* Asegura que el texto se centre */
 }
 
-.logo img {
-    width: 100px; /* Ajusta el tamaño de los logos */
-    height: auto;
-    cursor: pointer; /* Indica que los logos son clickeables */
-
-/* Estilos para el texto central */
-.header-title {
-    text-align: center;
-    flex-grow: 1; /* Asegura que el texto ocupe el espacio entre los logos */
-}
-
+/* Estilos para el título principal */
 .header-title h1, .header-title h2, .header-title p {
     margin: 5px 0; /* Márgenes pequeños entre cada fila */
 }
