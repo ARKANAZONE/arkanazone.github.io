@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const scrollWrapper = document.getElementById('scrollWrapper');
 
             // Cargar el logo desde el JSON
-            const logoUrl = data.LOGO[0].image; // Asumimos que "LOGO" contiene solo un logo
+            const logoUrl = data.LOGO.slice(0, 1); // Asumimos que "LOGO" contiene solo un logo
             const logoElement = document.getElementById('logo');
             logoElement.src = logoUrl; // Establecer la URL del logo en la etiqueta <img>
 
