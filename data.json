@@ -1,4 +1,12 @@
 {
+
+"LOGO": [
+    {
+      "title": "Película 1",
+      "image": "image/logo.jpg",
+      "url": "https://www.example.com/pelicula1"
+    }
+  ],
   "MOVIL": [
     {
       "title": "Película 1",

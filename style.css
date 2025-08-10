@@ -15,9 +15,15 @@ header {
     display: flex;
     justify-content: center; /* Centra todo el contenido */
     align-items: center;
-    flex-direction: column; /* Alineación vertical */
+    flex-direction: row; /* Asegura que el logo y el texto estén en una fila */
     padding: 20px 0; /* Relleno superior e inferior */
     text-align: center; /* Asegura que el texto se centre */
+}
+
+.header-logo {
+    width: 50px; /* Ajusta el tamaño del logo */
+    height: auto;
+    margin-right: 20px; /* Espacio entre el logo y el texto */
 }
 
 /* Estilos para el título principal */
@@ -60,12 +66,12 @@ header {
 .scroll-container {
     width: 100%;
     overflow: hidden;
-    margin-top: 5px;
+    margin-top: 20px;
 }
 
 .scroll-wrapper {
     display: flex;
-    animation: scrollEffect 40s linear infinite;
+    animation: scrollEffect 30s linear infinite;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
@@ -86,4 +92,9 @@ header {
     100% {
         transform: translateX(-100%);
     }
+}
+/* Estilo de los enlaces */
+.scroll-wrapper a {
+    display: block; /* Hace que los enlaces se comporten como bloques */
+    text-decoration: none; /* Elimina el subrayado en los enlaces */
 }
