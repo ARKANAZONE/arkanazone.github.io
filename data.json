@@ -1,15 +1,59 @@
-
 {
   "MOVIL": [
-    {"image": "ruta_a_imagen1.jpg"},
-    {"image": "ruta_a_imagen2.jpg"},
-    {"image": "ruta_a_imagen3.jpg"},
-    {"image": "ruta_a_imagen4.jpg"},
-    {"image": "ruta_a_imagen5.jpg"},
-    {"image": "ruta_a_imagen6.jpg"},
-    {"image": "ruta_a_imagen7.jpg"},
-    {"image": "ruta_a_imagen8.jpg"},
-    {"image": "ruta_a_imagen9.jpg"},
-    {"image": "ruta_a_imagen10.jpg"}
+    {
+      "title": "Película 1",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula1"
+    },
+    {
+      "title": "Película 2",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula2"
+    },
+    {
+      "title": "Película 3",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula3"
+    },
+    {
+      "title": "Película 4",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula4"
+    },
+    {
+      "title": "Película 5",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula5"
+    },
+    {
+      "title": "Película 6",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula6"
+    },
+    {
+      "title": "Película 7",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula7"
+    },
+    {
+      "title": "Película 8",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula8"
+    },
+    {
+      "title": "Película 9",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula9"
+    },
+    {
+      "title": "Película 10",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula10"
+    },
+    {
+      "title": "Película 11",
+      "image": "image/pelicula1.jpg",
+      "url": "https://www.example.com/pelicula11"
+    }
   ]
 }
