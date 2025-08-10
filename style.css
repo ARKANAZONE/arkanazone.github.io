@@ -60,12 +60,12 @@ header {
 .scroll-container {
     width: 100%;
     overflow: hidden;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .scroll-wrapper {
     display: flex;
-    animation: scrollEffect 30s linear infinite;
+    animation: scrollEffect 40s linear infinite;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
