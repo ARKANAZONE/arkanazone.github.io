@@ -60,7 +60,7 @@ header {
 .scroll-container {
     width: 100%;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .scroll-wrapper {
