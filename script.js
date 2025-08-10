@@ -1,72 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-// Cargar el archivo JSON de imágenes
-         fetch('data.json')                                                 // Tu archivo JSON se llama 'data.json' y esté en la misma carpeta
+         fetch('data.json')                                                 
         .then(response => response.json())
         .then(data => {
+            const logoLeft = data.LOGO_LEFT[0];                             
+            const logoLeftElement = document.createElement('img');          
+            logoLeftElement.src = logoLeft.image;                           
+            logoLeftElement.alt = logoLeft.title;                           
+            logoLeftElement.classList.add('logo');                          
+            const enlace = document.createElement('a');                  
+            enlace.href = logoLeft.url;                                  
+            enlace.target = '_self';                                       
+           enlace.appendChild(logoLeftElement);                             
+           scrollWrapper.appendChild(enlace);                              
+            const logoRight = data.LOGO_RIGHT[0];                             
+            const logoRightElement = document.createElement('img');         
+            logoRightElement.src = logoRight.image;                          
+            logoRightElement.alt = logoRight.title;                           
+            logoRightElement.classList.add('logo');                          
+            const enlace = document.createElement('a');                     
+            enlace.href = logoRight.url;                                     
+            enlace.target = '_self';                                        
+           enlace.appendChild(logoRightElement);                          
+           scrollWrapper.appendChild(enlace);                              
+            const mobileImages = data.MOVIL.slice(0, 10);                   
+            const scrollWrapper = document.getElementById('scrollWrapper'); 
+            mobileImages.forEach(image => {                                 
+            const imgElement = document.createElement('img');               
+            imgElement.src = image.image;                                   
+            imgElement.alt = image.title;                                  
+            imgElement.classList.add('scroll-item');                        
+           const enlace = document.createElement('a');                    
+            enlace.href = image.url;                                       
+            enlace.target = '_self';                                      
 
-// Insertar el logo izquierdo
-            const logoLeft = data.LOGO_LEFT[0];                             // Cargar el primer objeto de la lista LOGO_LEFT del JSON data
-            const logoLeftElement = document.createElement('img');          // Crea un nuevo elemento <img> en memoria en el contenedor logoLeftElement
-            logoLeftElement.src = logoLeft.image;                           // Usa el campo "image" en tu JSON con el contenedor logoLeftElement
-            logoLeftElement.alt = logoLeft.title;                           // Usa el campo "title" en tu JSON con el contenedor logoLeftElement
-            logoLeftElement.classList.add('logo');                          // Le añade una clase CSS llamada logo, para aplicar estilos.
-
-// Crear el enlace <a> para el logo
-            const enlace = document.createElement('a');                     // Crea el enlace
-            enlace.href = logoLeft.url;                                     // Poner la URL que permite acceder la imagen del logo
-            enlace.target = '_self';                                        // Opcional: abrir en la misma pestaña
-
-           enlace.appendChild(logoLeftElement);                             // Poner la imagen dentro del enlace
-           scrollWrapper.appendChild(enlace);                               // Agregar el enlace (con imagen) al contenedor
-
-// Insertar el logo derecho
-            const logoRight = data.LOGO_RIGHT[0];                             // Cargar el primer objeto de la lista LOGO_LEFT del JSON data
-            const logoRightElement = document.createElement('img');          // Crea un nuevo elemento <img> en memoria en el contenedor logoLeftElement
-            logoRightElement.src = logoRight.image;                           // Usa el campo "image" en tu JSON con el contenedor logoLeftElement
-            logoRightElement.alt = logoRight.title;                           // Usa el campo "title" en tu JSON con el contenedor logoLeftElement
-            logoRightElement.classList.add('logo');                          // Le añade una clase CSS llamada logo, para aplicar estilos.
-
-// Crear el enlace <a> para el logo
-            const enlace = document.createElement('a');                     // Crea el enlace
-            enlace.href = logoRight.url;                                     // Poner la URL que permite acceder la imagen del logo
-            enlace.target = '_self';                                        // Opcional: abrir en la misma pestaña
-
-           enlace.appendChild(logoRightElement);                             // Poner la imagen dentro del enlace
-           scrollWrapper.appendChild(enlace);                               // Agregar el enlace (con imagen) al contenedor
-
-// Insertar las diez portadas moviles
-            const mobileImages = data.MOVIL.slice(0, 10);                   // Filtrar los 10 primeros objetos de la categoría MOVIL del JSON data
-            const scrollWrapper = document.getElementById('scrollWrapper'); // Busca en el DOM un elemento con id="scrollWrapper", con las imágenes móviles
-            mobileImages.forEach(image => {                                 // Crear los elementos de las imágenes y añadirlas al contenedor image
-            const imgElement = document.createElement('img');               // Crea un nuevo elemento <img> en memoria en el contenedor imgElement
-            imgElement.src = image.image;                                   // Usa el campo "image" en tu JSON con el contenedor image
-            imgElement.alt = image.title;                                   // Usa el campo "title" en tu JSON con el contenedor image
-            imgElement.classList.add('scroll-item');                        // Le añade una clase CSS llamada scroll-item, para aplicar estilos
-
-// Crear el enlace <a> para las portadas moviles
-            const enlace = document.createElement('a');                    // Crea el enlace
-            enlace.href = image.url;                                       // Poner la URL que permite acceder la imagen de la pelicula
-            enlace.target = '_self';                                       // Opcional: abrir en la misma pestaña
-
-           enlace.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
-           scrollWrapper.appendChild(enlace);                              // Agregar el enlace (con imagen) al contenedor
+           enlace.appendChild(imgElement);                                 
+           scrollWrapper.appendChild(enlace);                             
 });
-
-// Duplicar las imágenes para crear el efecto de bucle infinito
-            mobileImages.forEach(image => {                                 // Crear los elementos de las imágenes y añadirlas al contenedor image
-            const imgElement = document.createElement('img');               // Crea un nuevo elemento <img> en memoria en el contenedor imgElement
-            imgElement.src = image.image;                                   // Usa el campo "image" en tu JSON con el contenedor image
-            imgElement.alt = image.title;                                   // Usa el campo "title" en tu JSON con el contenedor image
-            imgElement.classList.add('scroll-item');                        // Le añade una clase CSS llamada scroll-item, para aplicar estilos
-
-// Crear el enlace <a> para las portadas moviles
-            const enlace = document.createElement('a');                    // Crea el enlace
-            enlace.href = image.url;                                       // Poner la URL que permite acceder la imagen de la pelicula
-            enlace.target = '_self';                                       // Opcional: abrir en la misma pestaña
-
-           enlace.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
-           scrollWrapper.appendChild(enlace);                              // Agregar el enlace (con imagen) al contenedor
+            mobileImages.forEach(image => {                                 
+            const imgElement = document.createElement('img');               
+            imgElement.src = image.image;                                   
+            imgElement.alt = image.title;                                 
+            imgElement.classList.add('scroll-item');                        
+            const enlace = document.createElement('a');                    
+            enlace.href = image.url;                                       
+            enlace.target = '_self';                                       
+           enlace.appendChild(imgElement);                                 
+           scrollWrapper.appendChild(enlace);                              
         });
 })
         .catch(error => {
