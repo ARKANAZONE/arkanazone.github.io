@@ -25,7 +25,7 @@ header {
 
 /* Estilos para el título principal */
 .header-title h1, .header-title h2, .header-title p {
-    margin: 5px 0; /* Márgenes pequeños entre cada fila */
+    margin: 0; /* Márgenes pequeños entre cada fila */
 }
 
 /* Estilos para la primera fila */
