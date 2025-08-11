@@ -145,6 +145,7 @@ nav {
 
 .scroll-wrapper {
     display: flex;
+    width: max-content; /* ← Evita cortes de línea */
     animation: scrollEffect 30s linear infinite;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
@@ -164,6 +165,6 @@ nav {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
