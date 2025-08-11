@@ -140,13 +140,12 @@ nav {
     width: 100%;
     overflow: hidden;
     position: relative;
-    margin-top: 0;  /* Ajusta el tamaño de espaciado encima de las portadas */
 }
 
 .scroll-wrapper {
     display: flex;
     width: max-content; /* ← Evita cortes de línea */
-    animation: scrollEffect 25s linear infinite;
+    animation: scrollEffect 50s linear infinite;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
@@ -158,8 +157,7 @@ nav {
     margin-right: 10px; /* Espacio entre las imágenes */
     border-radius: 6px;
     flex-shrink: 0;
-    object-fit: cover;
-}
+    }
 
 /* Animación para el efecto de scroll infinito */
 @keyframes scrollEffect {
