@@ -151,6 +151,9 @@ nav {
     will-change: transform; /* ← Optimiza animación */
     backface-visibility: hidden;
     transform-style: preserve-3d;
+    transform: translateZ(0); 
+   -webkit-transform: translateZ(0); /* Para Safari */
+    contain: strict;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
