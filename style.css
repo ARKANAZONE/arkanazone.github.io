@@ -74,7 +74,7 @@ header {
     .banner {
       background: url('     ') no-repeat center center;
       background-size: cover;
-      padding: 20px;
+      padding-bottom: 10px;
       text-align: center;
     }
 
@@ -140,7 +140,7 @@ nav {
 .scroll-container {
     width: 100%;
     overflow: hidden;
-    margin-top: 5px;  /* ← Este valor ajusta la separacion de la fila de portadas moviles con el texto del encabezado */
+    margin-top: 0;  /* ← Este valor ajusta la separacion de la fila de portadas moviles con el texto del encabezado */
 }
 
 .scroll-wrapper {
