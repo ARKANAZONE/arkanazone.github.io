@@ -137,7 +137,7 @@ nav {
 .scroll-container {
     width: 100%;
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 5px;  /* ← Este valor ajusta la separacion de la fila de portadas moviles con el texto del encabezado */
 }
 
 .scroll-wrapper {
