@@ -97,7 +97,7 @@ header {
     }
 
 nav {
-      margin-top: 40px; /* ← Puedes ajustar el valor */
+      margin-top: 30px; /* ← Puedes ajustar el valor */
       background-color: #1b1b1b;
       overflow-x: auto;
       white-space: nowrap;
