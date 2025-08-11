@@ -72,7 +72,7 @@ header {
     }
 
     .banner {
-      background: url('     ') no-repeat center center;
+      /*background: url('     ') no-repeat center center;/*
       background-size: cover;
       padding-bottom: 10px;  /* Ajusta el tamaño de espaciado debajo del texto */
       text-align: center;
@@ -145,8 +145,12 @@ nav {
 
 .scroll-wrapper {
     display: flex;
-    width: max-content; /* ← Evita cortes de línea */
+    gap: 10px; /* Espacio entre portadas */
+    width: max-content;
     animation: scrollEffect 30s linear infinite;
+    will-change: transform; /* ← Optimiza animación */
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
@@ -155,8 +159,11 @@ nav {
 .scroll-item {
     width: 130px;
     height: 190px;
-    margin-right: 10px; /* Espacio entre las imágenes */
     object-fit: cover;
+    flex-shrink: 0; /* ← Importante para evitar deformaciones */
+    display: block;
+    border: none;
+    padding: 0;
 }
 
 /* Animación para el efecto de scroll infinito */
