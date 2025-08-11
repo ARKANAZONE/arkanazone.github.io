@@ -72,8 +72,6 @@ header {
     }
 
     .banner {
-      background: url('     ') no-repeat center center;
-      background-size: cover;
       padding-bottom: 10px;  /* Ajusta el tamaño de espaciado debajo del texto */
       text-align: center;
     }
@@ -124,7 +122,8 @@ nav {
       color: #ccc;
       text-decoration: none;
       padding: 10px 18px;   /* ← Ajusta para cambiar el tamaño del boton del menu */
-      font-size: 15px;
+      font-size: 15px; /* ← Ajusta para cambiar el tamaño de letra del menu */
+      font-family: Arial, sans-serif; /* Cambia esto por la fuente que desees */
       transition: all 0.3s ease;
       margin: 0 5px;
     }
@@ -136,26 +135,29 @@ nav {
       box-shadow: 0 0 8px #00cfff;
     }
 
-/* Estilos para la fila de portadas */
+/* Estilos para la fila de portadas moviles */
 .scroll-container {
     width: 100%;
     overflow: hidden;
+    position: relative;
     margin-top: 0;  /* Ajusta el tamaño de espaciado encima de las portadas */
 }
 
 .scroll-wrapper {
     display: flex;
     width: max-content; /* ← Evita cortes de línea */
-    animation: scrollEffect 30s linear infinite;
+    animation: scrollEffect 40s linear infinite;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
-    animation-play-state: paused; /* Detiene la animación */
+    animation-play-state: paused !important; /* Detiene la animación */
 }
 .scroll-item {
     width: 130px;
     height: 190px;
     margin-right: 10px; /* Espacio entre las imágenes */
+    border-radius: 6px;
+    flex-shrink: 0;
     object-fit: cover;
 }
 
