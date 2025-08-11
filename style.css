@@ -93,8 +93,8 @@ header {
     }
 
     .logo {
-      width: 120px;
-      max-height: 80px;
+      width: 120px;     /* Ajusta el ancho del logo */
+      max-height: 120px; /* Ajusta el alto del logo */
       height: auto;
       display: block;
     }
