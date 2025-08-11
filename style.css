@@ -30,7 +30,7 @@ header {
 
 /* Estilos para la primera fila */
 .header-title h1 {
-    font-size: 50px; /* Tamaño de letra para la primera fila */
+    font-size: 20px; /* Tamaño de letra para la primera fila */
 }
 
 .white {
@@ -43,7 +43,7 @@ header {
 
 /* Estilos para la segunda fila */
 .header-title h2 {
-    font-size: 25px; /* Tamaño de letra para la segunda fila */
+    font-size: 50px; /* Tamaño de letra para la segunda fila */
 }
 
 /* Estilos para la tercera fila */
