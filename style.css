@@ -16,7 +16,10 @@ header {
     justify-content: center; /* Centra todo el contenido */
     align-items: center;
     flex-direction: column; /* Alineación vertical */
-    padding: 10px 0; /* Relleno superior e inferior */
+    padding-top: 5px;
+    padding-right: 0;
+    padding-bottom: 5px;
+    padding-left: 0;
     text-align: center; /* Asegura que el texto se centre */
 }
 
