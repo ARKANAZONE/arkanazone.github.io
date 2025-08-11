@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+// Hacer visible el banner (texto + logos)
+    document.getElementById('banner').classList.add('visible');
+
     // Cargar el archivo JSON de imágenes
     fetch('data.json') // Asegúrate de que tu archivo JSON se llama 'data.json' y esté en la misma carpeta
         .then(response => response.json())

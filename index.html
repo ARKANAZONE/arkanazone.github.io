@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Películas y Series</title>
-    <!-- Se vincula el archivo de estilo CSS -->
-    <link rel="stylesheet" href="style.css">
-</head>
+    
+<!-- Se vincula el archivo de estilo CSS -->
+    <link rel="stylesheet" href="style.css"></head>
 <body>
     <!-- Cabecera -->
     <header>
+
+<div class="banner fade-slide" id="banner">
+<div class="banner-header">
+<div class="logo-container left-logo">
+<img alt="Logo Izquierdo" class="logo" src="URL_DE_TU_LOGO_AQUI"/>
+</div>
+
         <div class="header-title">
             <h1><span class="white">DISFRUTA</span> <span class="celeste">NUESTRO</span></h1>
             <h2><span class="white">CONTENIDO</span></h2>
@@ -17,9 +24,16 @@
                 <span class="white">en Streaming, </span>
                 <span class="celeste">a tu SMARTTV, </span>
                 <span class="white">o dispositivos, </span>
-                <span class="celeste">Android o IOS</span>
+                <span class="celeste">Android o IOS </span>
             </p>
         </div>
+
+<div class="logo-container right-logo">
+<img alt="Logo Derecho" class="logo" src="URL_DE_TU_LOGO_AQUI"/>
+</div>
+</div>
+</div>
+
     </header>
     <!-- Fila de portadas con scroll infinito -->
     <div class="scroll-container">
@@ -27,7 +41,22 @@
             <!-- Las portadas se cargarán aquí con JavaScript -->
         </div>
     </div>
-    
+ 
+<nav>
+<a href="URL_DE_INICIO" target="_self">Inicio</a>
+<a class="active" href="URL_DE_INFANTIL" target="_self">Infantil</a>
+<a href="URL_DE_SERIES" target="_self">Series</a>
+<a href="URL_DE_PELICULAS" target="_self">Películas</a>
+<a href="URL_DE_NOVELAS" target="_self">Novelas</a>
+<a href="URL_DE_SERIES" target="_self">Series</a>
+<a href="URL_DE_DOCUMENTALES" target="_self">Documentales</a>
+<a href="URL_DE_DORAMAS" target="_self">Doramas</a>
+<a href="URL_DE_ANIME" target="_self">Ánime</a>
+<a href="URL_DE_PLATAFORMA" target="_self">Plataforma</a>
+<a href="URL_DE_SERVICIOS" target="_self">Servicios</a>
+<a href="URL_DE_TIENDA" target="_self">Tienda</a>
+</nav>
+  
     <script src="script.js"></script>
 </body>
 </html>
