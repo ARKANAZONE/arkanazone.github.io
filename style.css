@@ -84,8 +84,7 @@ header {
       align-items: center;
       justify-content: center;
       gap: 30px;
-      /*flex-wrap: nowrap;/*  /* <- Mantiene todo en una línea */
-      /*overflow-x: auto;/*   /* <- Permite desplazamiento si no cabe */
+      flex-wrap: nowrap;  /* <- Mantiene todo en una línea */
       margin-bottom: 10px; /* Espacio debajo para separar del siguiente contenido */
     }
     .banner-header::-webkit-scrollbar {
