@@ -97,7 +97,7 @@ header {
     }
 
 nav {
-      margin-top: 10px; /* ← Puedes ajustar el valor */
+      margin-top: 10px; /* ajustar la barra de menu a las portadas moviles */
       background-color: #1b1b1b;
       overflow-x: auto;
       white-space: nowrap;
@@ -107,9 +107,9 @@ nav {
       top: 0;
       z-index: 1000;
       scrollbar-width: none;
-      padding-top: 3px; /* ← Ajusta este valor a tu gusto */
-      border-top: 3px solid #00cfff;   /* Línea celeste arriba del menú */
-      border-bottom: 2px solid #000;   /* Puedes dejar el borde inferior negro si quieres */
+      padding-top: 3px; /* ← Ajusta la linea celeste a la barra de menu */
+      border-top: 3px solid #00cfff;   /* Línea celeste arriba del menu */
+      border-bottom: 2px solid #000;   /* linea negra inferior del menu */
     }
 
     nav::-webkit-scrollbar {
