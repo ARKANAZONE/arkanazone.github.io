@@ -1,20 +1,6 @@
 {
-"LOGO_LEFT": [
+"MOVIL": [    
     {
-      "title": "Logo Izquierda",
-      "image": "image/logo-izquierda.png",
-      "url": "https://www.example.com"
-    }
-  ],
-"LOGO_RIGHT": [
-    {
-      "title": "Logo Derecha",
-      "image": "image/logo-derecha.png",
-      "url": "https://www.example.com"
-    }
-  ],
-  
-"MOVIL": [    {
       "title": "Película 1",
       "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/pelicula1"
@@ -68,6 +54,179 @@
       "title": "Película 11",
       "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/pelicula11"
+    }
+  ],
+  
+"INFANTIL": [
+    {
+      "title": "Película Infantil 1",
+      "image": "image/infantil1.jpg",
+      "url": "https://www.example.com/infantil1"
+    },
+    {
+      "title": "Película Infantil 2",
+      "image": "image/infantil2.jpg",
+      "url": "https://www.example.com/infantil2"
+    },
+    {
+      "title": "Película Infantil 3",
+      "image": "image/infantil3.jpg",
+      "url": "https://www.example.com/infantil3"
+    },
+    {
+      "title": "Película Infantil 4",
+      "image": "image/infantil4.jpg",
+      "url": "https://www.example.com/infantil4"
+    },
+    {
+      "title": "Película Infantil 5",
+      "image": "image/infantil5.jpg",
+      "url": "https://www.example.com/infantil5"
+    },
+    {
+      "title": "Película Infantil 6",
+      "image": "image/infantil6.jpg",
+      "url": "https://www.example.com/infantil6"
+    },
+    {
+      "title": "Película Infantil 7",
+      "image": "image/infantil7.jpg",
+      "url": "https://www.example.com/infantil7"
+    },
+    {
+      "title": "Película Infantil 8",
+      "image": "image/infantil8.jpg",
+      "url": "https://www.example.com/infantil8"
+    },
+    {
+      "title": "Película Infantil 9",
+      "image": "image/infantil9.jpg",
+      "url": "https://www.example.com/infantil9"
+    },
+    {
+      "title": "Película Infantil 10",
+      "image": "image/infantil10.jpg",
+      "url": "https://www.example.com/infantil10"
+    },
+    {
+      "title": "Película Infantil 11",
+      "image": "image/infantil11.jpg",
+      "url": "https://www.example.com/infantil11"
+    }
+  ],
+
+  "TERROR": [
+    {
+      "title": "Película de Terror 1",
+      "image": "image/terror1.jpg",
+      "url": "https://www.example.com/terror1"
+    },
+    {
+      "title": "Película de Terror 2",
+      "image": "image/terror2.jpg",
+      "url": "https://www.example.com/terror2"
+    },
+    {
+      "title": "Película de Terror 3",
+      "image": "image/terror3.jpg",
+      "url": "https://www.example.com/terror3"
+    },
+    {
+      "title": "Película de Terror 4",
+      "image": "image/terror4.jpg",
+      "url": "https://www.example.com/terror4"
+    },
+    {
+      "title": "Película de Terror 5",
+      "image": "image/terror5.jpg",
+      "url": "https://www.example.com/terror5"
+    },
+    {
+      "title": "Película de Terror 6",
+      "image": "image/terror6.jpg",
+      "url": "https://www.example.com/terror6"
+    },
+    {
+      "title": "Película de Terror 7",
+      "image": "image/terror7.jpg",
+      "url": "https://www.example.com/terror7"
+    },
+    {
+      "title": "Película de Terror 8",
+      "image": "image/terror8.jpg",
+      "url": "https://www.example.com/terror8"
+    },
+    {
+      "title": "Película de Terror 9",
+      "image": "image/terror9.jpg",
+      "url": "https://www.example.com/terror9"
+    },
+    {
+      "title": "Película de Terror 10",
+      "image": "image/terror10.jpg",
+      "url": "https://www.example.com/terror10"
+    },
+    {
+      "title": "Película de Terror 11",
+      "image": "image/terror11.jpg",
+      "url": "https://www.example.com/terror11"
+    }
+  ],
+  "COMEDIA": [
+    {
+      "title": "Película de Comedia 1",
+      "image": "image/comedia1.jpg",
+      "url": "https://www.example.com/comedia1"
+    },
+    {
+      "title": "Película de Comedia 2",
+      "image": "image/comedia2.jpg",
+      "url": "https://www.example.com/comedia2"
+    },
+    {
+      "title": "Película de Comedia 3",
+      "image": "image/comedia3.jpg",
+      "url": "https://www.example.com/comedia3"
+    },
+    {
+      "title": "Película de Comedia 4",
+      "image": "image/comedia4.jpg",
+      "url": "https://www.example.com/comedia4"
+    },
+    {
+      "title": "Película de Comedia 5",
+      "image": "image/comedia5.jpg",
+      "url": "https://www.example.com/comedia5"
+    },
+    {
+      "title": "Película de Comedia 6",
+      "image": "image/comedia6.jpg",
+      "url": "https://www.example.com/comedia6"
+    },
+    {
+      "title": "Película de Comedia 7",
+      "image": "image/comedia7.jpg",
+      "url": "https://www.example.com/comedia7"
+    },
+    {
+      "title": "Película de Comedia 8",
+      "image": "image/comedia8.jpg",
+      "url": "https://www.example.com/comedia8"
+    },
+    {
+      "title": "Película de Comedia 9",
+      "image": "image/comedia9.jpg",
+      "url": "https://www.example.com/comedia9"
+    },
+    {
+      "title": "Película de Comedia 10",
+      "image": "image/comedia10.jpg",
+      "url": "https://www.example.com/comedia10"
+    },
+    {
+      "title": "Película de Comedia 11",
+      "image": "image/comedia11.jpg",
+      "url": "https://www.example.com/comedia11"
     }
   ]
 }

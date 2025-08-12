@@ -140,12 +140,13 @@ nav {
     width: 100%;
     overflow: hidden;
     position: relative;
+    margin-top: 0;  /* Ajusta el tamaño de espaciado encima de las portadas */
 }
 
 .scroll-wrapper {
     display: flex;
     width: max-content; /* ← Evita cortes de línea */
-    animation: scrollEffect 50s linear infinite;
+    animation: scrollEffect 40s linear infinite;
 }
 /* Pausar la animación al pasar el mouse sobre el contenedor */
 .scroll-wrapper:hover {
@@ -157,7 +158,8 @@ nav {
     margin-right: 10px; /* Espacio entre las imágenes */
     border-radius: 6px;
     flex-shrink: 0;
-    }
+    object-fit: cover;
+}
 
 /* Animación para el efecto de scroll infinito */
 @keyframes scrollEffect {
@@ -253,6 +255,22 @@ nav {
       text-overflow: ellipsis;
       max-width: 160px;
     }
+
+#dynamic-pagination-container {
+    text-align: center;
+}
+
+#pagination-header {
+    text-align: center;
+    margin-bottom: 2px;  /* ajusta para pegar PAGINACION X DE Y A LA PAGINACION EN LA BUSQUEDA */
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+
+#pagination a {
+    display: inline-block;
+} 
 
     .title-overlay {
       position: absolute;
