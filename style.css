@@ -208,9 +208,9 @@ nav {
     }
 
  .movie-card img {
-      width: 160px;
-      height: 220px;
-      object-fit: cover;
+      width: 100%;  /* Asegura que la imagen ocupe todo el ancho disponible */
+      height: auto; /* Mantiene la proporción de la imagen */
+      object-fit: contain; /* Hace que la imagen se ajuste sin cortar */
       border: 2px solid #00cfff;
       border-radius: 5px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
