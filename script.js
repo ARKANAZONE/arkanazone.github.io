@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pagination = document.getElementById('pagination');
     const paginationHeader = document.getElementById('pagination-header');
 
-    const itemsPerPage = 10;
+    const itemsPerPage = 10; // Solo muetra 10 películas por paina al hacer la busqueda
     let filteredResults = [];
 
     function renderPagination(currentPage, totalPages) {
@@ -200,10 +200,41 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(pageKey + "_lastSearchQuery", query);
         localStorage.setItem(pageKey + "_lastSearchPage", 1);
 
-        filteredResults = movieCards.filter(card => {
-            const title = card.querySelector('.movie-title').textContent.toLowerCase();
-            return title.includes(query);
+        filteredResults = [];
+
+        // Búsqueda en todas las categorías
+        Object.keys(data).forEach(category => {
+            const categoryMovies = data[category];
+            categoryMovies.forEach(movie => {
+                if (movie.title.toLowerCase().includes(query)) {
+                    const card = document.createElement('div');
+                    card.classList.add('movie-card');
+
+                    const link = document.createElement('a');
+                    link.href = movie.url;
+                    link.target = '_self';
+
+                    const img = document.createElement('img');
+                    img.src = movie.image;
+                    img.alt = movie.title;
+
+                    const overlay = document.createElement('div');
+                    overlay.classList.add('title-overlay');
+                    overlay.textContent = movie.title;
+
+                    const titleDiv = document.createElement('div');
+                    titleDiv.classList.add('movie-title');
+                    titleDiv.textContent = movie.title;
+
+                    link.appendChild(img);
+                    link.appendChild(overlay);
+                    link.appendChild(titleDiv);
+                    card.appendChild(link);
+                    filteredResults.push(card);
+                }
+            });
         });
+
 
         movieCards.forEach(card => card.style.display = 'none');
         resultMsg.style.display = "block";
