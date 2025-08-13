@@ -45,8 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cargar portadas de la categoría INFANTIL en la columna izquierda
     // =========================
     const infantilContainer = document.getElementById('infantilContainer');
-    const infantilMovies = data.INFANTIL || [];
-    infantilMovies.forEach(movie => {
+const infantilMovies = data.INFANTIL.slice(0, 11);  // Solo tomar las primeras 11 películas    infantilMovies.forEach(movie => {
         const card = document.createElement('div');
         card.classList.add('movie-card');
 
