@@ -55,44 +55,47 @@ document.addEventListener("DOMContentLoaded", () => {
             enlaceMobile.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
             
             scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
-    
-    
-    // =========================
-    // Cargar portadas de la categoría INFANTIL en la columna izquierda
-    // =========================
-    const infantilContainer = document.getElementById('infantilContainer');
-    const infantilMovies = data.INFANTIL || [];
-    infantilMovies.forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
+     });
+        .catch(error => {
+            console.error('Error cargando el archivo JSON:', error);
 
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
+                // =========================
+            // Cargar portadas de la categoría INFANTIL en la columna izquierda (solo una vez y limitadas a 11)
+            // =========================
+            const infantilContainer = document.getElementById('infantilContainer');
+            const infantilMovies = data.INFANTIL.slice(0, 11);  // Solo cargar las primeras 11 películas
+            infantilMovies.forEach(movie => {
+                const card = document.createElement('div');
+                card.classList.add('movie-card');
 
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
+                const link = document.createElement('a');
+                link.href = movie.url;
+                link.target = '_self';
 
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
+                const img = document.createElement('img');
+                img.src = movie.image;
+                img.alt = movie.title;
 
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
+                const overlay = document.createElement('div');
+                overlay.classList.add('title-overlay');
+                overlay.textContent = movie.title;
 
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-        infantilContainer.appendChild(card);
-    });
+                const titleDiv = document.createElement('div');
+                titleDiv.classList.add('movie-title');
+                titleDiv.textContent = movie.title;
+
+                link.appendChild(img);
+                link.appendChild(overlay);
+                link.appendChild(titleDiv);
+                card.appendChild(link);
+                infantilContainer.appendChild(card);
+            });
 
         })
         .catch(error => {
             console.error('Error cargando el archivo JSON:', error);
-            
+        });
+
 // =========================
     // Contador de visitas
     // =========================
