@@ -41,41 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
     
-    // =========================
-    // Cargar portadas de la categoría INFANTIL en la columna izquierda
-    // =========================
-    const infantilContainer = document.getElementById('infantilContainer');
-const infantilMovies = data.INFANTIL || [];  // Cargar todas las películas sin limitar
-        infantilMovies.forEach(movie => {
-                const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
-
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
-
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-        infantilContainer.appendChild(card);
-    });
-
-        });
-
-            // Duplicar las imágenes para crear el efecto de bucle infinito
+                // Duplicar las imágenes para crear el efecto de bucle infinito
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
                 imgElement.src = image.image;
@@ -90,40 +56,7 @@ const infantilMovies = data.INFANTIL || [];  // Cargar todas las películas sin 
             
             scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
     
-    // =========================
-    // Cargar portadas de la categoría INFANTIL en la columna izquierda
-    // =========================
-    const infantilContainer = document.getElementById('infantilContainer');
-    const infantilMovies = data.INFANTIL || [];
-    infantilMovies.forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
-
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
-
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-        infantilContainer.appendChild(card);
-    });
-
-        });
-
+    
     // =========================
     // Cargar portadas de la categoría INFANTIL en la columna izquierda
     // =========================
@@ -159,40 +92,7 @@ const infantilMovies = data.INFANTIL || [];  // Cargar todas las películas sin 
         })
         .catch(error => {
             console.error('Error cargando el archivo JSON:', error);
-
-    // =========================
-    // Cargar portadas de la categoría INFANTIL en la columna izquierda
-    // =========================
-    const infantilContainer = document.getElementById('infantilContainer');
-    const infantilMovies = data.INFANTIL || [];
-    infantilMovies.forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
-
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
-
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-        infantilContainer.appendChild(card);
-    });
-
-        });
+            
 // =========================
     // Contador de visitas
     // =========================
@@ -241,40 +141,7 @@ const infantilMovies = data.INFANTIL || [];  // Cargar todas las películas sin 
                     e.preventDefault();
                     showPage(page);
         
-    // =========================
-    // Cargar portadas de la categoría INFANTIL en la columna izquierda
-    // =========================
-    const infantilContainer = document.getElementById('infantilContainer');
-    const infantilMovies = data.INFANTIL || [];
-    infantilMovies.forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
-
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
-
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-        infantilContainer.appendChild(card);
-    });
-
-        });
-            } else {
+         } else {
                 btn.style.pointerEvents = "none";
                 btn.style.opacity = "0.5";
             }
@@ -339,40 +206,6 @@ const infantilMovies = data.INFANTIL || [];  // Cargar todas las películas sin 
         filteredResults = movieCards.filter(card => {
             const title = card.querySelector('.movie-title').textContent.toLowerCase();
             return title.includes(query);
-
-    // =========================
-    // Cargar portadas de la categoría INFANTIL en la columna izquierda
-    // =========================
-    const infantilContainer = document.getElementById('infantilContainer');
-    const infantilMovies = data.INFANTIL || [];
-    infantilMovies.forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
-
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
-
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-        infantilContainer.appendChild(card);
-    });
-
-        });
 
         movieCards.forEach(card => card.style.display = 'none');
         resultMsg.style.display = "block";
