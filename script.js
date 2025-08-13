@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('banner').classList.add('visible');
 
     // =========================
-    // Cargar todas las portadas desde data.json
+    // Cargar portadas móviles desde data.json
     // =========================
     fetch('data.json') 
         .then(response => response.json())
@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // =========================
-            // Cargar portadas de la categoría INFANTIL en la columna izquierda
+            // Cargar portadas de la categoría INFANTIL en la columna izquierda (sin duplicado)
             // =========================
             const infantilContainer = document.getElementById('infantilContainer');
-            const infantilMovies = data.INFANTIL.slice(0, 11); // Solo cargar las primeras 11 películas
+            const infantilMovies = data.INFANTIL.slice(0, 11);  // Solo cargar las primeras 11 películas
             infantilMovies.forEach(movie => {
                 const card = document.createElement('div');
                 card.classList.add('movie-card');
@@ -114,10 +114,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const movieCards = Array.from(document.querySelectorAll('.movie-card'));
     const pagination = document.getElementById('pagination');
     const paginationHeader = document.getElementById('pagination-header');
 
-    const itemsPerPage = 10; // Solo muetra 10 películas por paina al hacer la busqueda
+    const itemsPerPage = 10;
     let filteredResults = [];
 
     function renderPagination(currentPage, totalPages) {
@@ -167,10 +168,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function showPage(page) {
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
+        movieCards.forEach(card => card.style.display = 'none');
         filteredResults.slice(start, end).forEach(card => card.style.display = 'flex');
         renderPagination(page, Math.ceil(filteredResults.length / itemsPerPage));
         paginationHeader.textContent = `PÁGINA ${page} DE ${Math.ceil(filteredResults.length / itemsPerPage)}`;
         paginationHeader.style.display = "block";
+
         localStorage.setItem(pageKey + "_lastSearchPage", page);
     }
 
@@ -183,10 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultDesc = document.getElementById('search-result-desc');
         const mainPagination = document.getElementById('main-pagination');
 
-        // Restablecer la búsqueda
         if (query === "") {
-            filteredResults = [];
-            document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'flex');
+            movieCards.forEach(card => card.style.display = 'flex');
             pagination.style.display = "none";
             mainPagination.style.display = "block";
             resultMsg.style.display = "none";
@@ -199,53 +200,26 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(pageKey + "_lastSearchQuery", query);
         localStorage.setItem(pageKey + "_lastSearchPage", 1);
 
-        filteredResults = [];
-
-        // Búsqueda en todas las categorías
-        Object.keys(data).forEach(category => {
-            const categoryMovies = data[category];
-            categoryMovies.forEach(movie => {
-                if (movie.title.toLowerCase().includes(query)) {
-                    const card = document.createElement('div');
-                    card.classList.add('movie-card');
-
-                    const link = document.createElement('a');
-                    link.href = movie.url;
-                    link.target = '_self';
-
-                    const img = document.createElement('img');
-                    img.src = movie.image;
-                    img.alt = movie.title;
-
-                    const overlay = document.createElement('div');
-                    overlay.classList.add('title-overlay');
-                    overlay.textContent = movie.title;
-
-                    const titleDiv = document.createElement('div');
-                    titleDiv.classList.add('movie-title');
-                    titleDiv.textContent = movie.title;
-
-                    link.appendChild(img);
-                    link.appendChild(overlay);
-                    link.appendChild(titleDiv);
-                    card.appendChild(link);
-                    filteredResults.push(card);
-                }
-            });
+        filteredResults = movieCards.filter(card => {
+            const title = card.querySelector('.movie-title').textContent.toLowerCase();
+            return title.includes(query);
         });
 
-        // Mostrar resultados
+        movieCards.forEach(card => card.style.display = 'none');
+        resultMsg.style.display = "block";
+        mainPagination.style.display = "none";
+        resultTitle.textContent = `Resultados para: "${query}"`;
+
         if (filteredResults.length > 0) {
-            resultMsg.style.display = "block";
+            showPage(1);
             resultImage.style.display = "none";
             resultNoResult.textContent = "";
             resultDesc.textContent = `${filteredResults.length} resultados encontrados.`;
-            showPage(1);
         } else {
+            pagination.style.display = "none";
             resultImage.style.display = "block";
             resultNoResult.textContent = "No se encontraron coincidencias";
             resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda. Intente nuevamente con algunas palabras clave diferentes.";
-            pagination.style.display = "none";
             paginationHeader.style.display = "none";
         }
     }
