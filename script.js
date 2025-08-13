@@ -56,9 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
      });
-        .catch(error => {
-            console.error('Error cargando el archivo JSON:', error);
-
+        
                 // =========================
             // Cargar portadas de la categoría INFANTIL en la columna izquierda (solo una vez y limitadas a 11)
             // =========================
