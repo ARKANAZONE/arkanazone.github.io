@@ -438,4 +438,3 @@ restoreSearch(); // Para recarga normal
             restoreSearch();
         }
     });
-});
