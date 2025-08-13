@@ -236,24 +236,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        movieCards.forEach(card => card.style.display = 'none');
-        resultMsg.style.display = "block";
-        mainPagination.style.display = "none";
-        resultTitle.textContent = `Resultados para: "${query}"`;
-
+        // Mostrar resultados
         if (filteredResults.length > 0) {
-            showPage(1);
+            resultMsg.style.display = "block";
             resultImage.style.display = "none";
             resultNoResult.textContent = "";
             resultDesc.textContent = `${filteredResults.length} resultados encontrados.`;
+            showPage(1);
         } else {
-            pagination.style.display = "none";
             resultImage.style.display = "block";
             resultNoResult.textContent = "No se encontraron coincidencias";
             resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda. Intente nuevamente con algunas palabras clave diferentes.";
+            pagination.style.display = "none";
             paginationHeader.style.display = "none";
         }
     }
+
 
     searchBtn.addEventListener('click', filterMovies);
     searchInput.addEventListener('keypress', function(e) {
