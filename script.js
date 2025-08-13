@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('banner').classList.add('visible');
 
     // =========================
-    // Cargar portadas móviles desde data.json
+    // Cargar todas las portadas desde data.json
     // =========================
     fetch('data.json') 
         .then(response => response.json())
@@ -59,10 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // =========================
-            // Cargar portadas de la categoría INFANTIL en la columna izquierda (sin duplicado)
+            // Cargar portadas de la categoría INFANTIL en la columna izquierda
             // =========================
             const infantilContainer = document.getElementById('infantilContainer');
-            const infantilMovies = data.INFANTIL.slice(0, 11);  // Solo cargar las primeras 11 películas
+            const infantilMovies = data.INFANTIL.slice(0, 11); // Solo cargar las primeras 11 películas
             infantilMovies.forEach(movie => {
                 const card = document.createElement('div');
                 card.classList.add('movie-card');
@@ -114,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
-    const movieCards = Array.from(document.querySelectorAll('.movie-card'));
     const pagination = document.getElementById('pagination');
     const paginationHeader = document.getElementById('pagination-header');
 
@@ -168,12 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function showPage(page) {
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-        movieCards.forEach(card => card.style.display = 'none');
         filteredResults.slice(start, end).forEach(card => card.style.display = 'flex');
         renderPagination(page, Math.ceil(filteredResults.length / itemsPerPage));
         paginationHeader.textContent = `PÁGINA ${page} DE ${Math.ceil(filteredResults.length / itemsPerPage)}`;
         paginationHeader.style.display = "block";
-
         localStorage.setItem(pageKey + "_lastSearchPage", page);
     }
 
@@ -186,8 +183,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultDesc = document.getElementById('search-result-desc');
         const mainPagination = document.getElementById('main-pagination');
 
+        // Restablecer la búsqueda
         if (query === "") {
-            movieCards.forEach(card => card.style.display = 'flex');
+            filteredResults = [];
+            document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'flex');
             pagination.style.display = "none";
             mainPagination.style.display = "block";
             resultMsg.style.display = "none";
@@ -235,7 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-
         // Mostrar resultados
         if (filteredResults.length > 0) {
             resultMsg.style.display = "block";
@@ -251,7 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
             paginationHeader.style.display = "none";
         }
     }
-
 
     searchBtn.addEventListener('click', filterMovies);
     searchInput.addEventListener('keypress', function(e) {
