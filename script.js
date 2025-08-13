@@ -1,10 +1,10 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
-// =========================
+    // =========================
     // Identificador único por página
     // =========================
-    const pageKey = location.pathname; // Ej: "/index.html" o "/series.html"
-
+    const pageKey = location.pathname;
 
     // =========================
     // Animación: mostrar banner (texto + logos)
@@ -14,51 +14,52 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
     // Cargar portadas móviles desde data.json
     // =========================
-    fetch('data.json') // Asegúrate de que tu archivo JSON se llama 'data.json' y esté en la misma carpeta
+    fetch('data.json') 
         .then(response => response.json())
         .then(data => {
             const scrollWrapper = document.getElementById('scrollWrapper');
 
             // =========================
             // Filtrar las 10 primeras imágenes de la categoría "MOVIL"
-            // =========================//
+            // =========================
             const mobileImages = data.MOVIL.slice(0, 10);
 
             // =========================
-            // Agregar imágenes con enlaces
+            // Agregar imágenes con enlaces (y duplicarlas para crear efecto de bucle infinito)
             // =========================
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.image;  // Usando el campo "image" en tu JSON campo "url"
-                imgElement.alt = image.title; // Usando el campo "title" en tu JSON
+                imgElement.src = image.image;  
+                imgElement.alt = image.title; 
                 imgElement.classList.add('scroll-item');
 
-                // Crear el enlace <a> para las portadas moviles
-            const enlaceMobile = document.createElement('a');                    // Crea el enlace
-            enlaceMobile.href = image.url;                                       // Poner la URL que permite acceder la imagen de la pelicula
-            enlaceMobile.target = '_self';                                       // Opcional: abrir en la misma pestaña
-            enlaceMobile.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
-            
-            scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
-    
-                // Duplicar las imágenes para crear el efecto de bucle infinito
+                // Crear el enlace <a> para las portadas móviles
+                const enlaceMobile = document.createElement('a');                    
+                enlaceMobile.href = image.url;                                       
+                enlaceMobile.target = '_self';                                       
+                enlaceMobile.appendChild(imgElement);                                 
+
+                scrollWrapper.appendChild(enlaceMobile);                              
+            });
+
+            // Duplicar las imágenes para el efecto de bucle infinito
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.image;
-                imgElement.alt = image.title;
+                imgElement.src = image.image;  
+                imgElement.alt = image.title; 
                 imgElement.classList.add('scroll-item');
-                
-           // Crear el enlace <a> para las portadas moviles
-            const enlaceMobile = document.createElement('a');                    // Crea el enlace
-            enlaceMobile.href = image.url;                                       // Poner la URL que permite acceder la imagen de la pelicula
-            enlaceMobile.target = '_self';                                       // Opcional: abrir en la misma pestaña
-            enlaceMobile.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
-            
-            scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
-     });
-        
-                // =========================
-            // Cargar portadas de la categoría INFANTIL en la columna izquierda (solo una vez y limitadas a 11)
+
+                // Crear el enlace <a> para las portadas móviles duplicadas
+                const enlaceMobile = document.createElement('a');                    
+                enlaceMobile.href = image.url;                                       
+                enlaceMobile.target = '_self';                                       
+                enlaceMobile.appendChild(imgElement);                                 
+
+                scrollWrapper.appendChild(enlaceMobile);                              
+            });
+
+            // =========================
+            // Cargar portadas de la categoría INFANTIL en la columna izquierda (sin duplicado)
             // =========================
             const infantilContainer = document.getElementById('infantilContainer');
             const infantilMovies = data.INFANTIL.slice(0, 11);  // Solo cargar las primeras 11 películas
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Error cargando el archivo JSON:', error);
         });
 
-// =========================
+    // =========================
     // Contador de visitas
     // =========================
     const visitSpan = document.getElementById('visitCount');
@@ -141,8 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.addEventListener("click", (e) => {
                     e.preventDefault();
                     showPage(page);
-        
-         } else {
+                });
+            } else {
                 btn.style.pointerEvents = "none";
                 btn.style.opacity = "0.5";
             }
@@ -172,9 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderPagination(page, Math.ceil(filteredResults.length / itemsPerPage));
         paginationHeader.textContent = `PÁGINA ${page} DE ${Math.ceil(filteredResults.length / itemsPerPage)}`;
         paginationHeader.style.display = "block";
-    
 
-// Guardar página actual (con identificador de página)
         localStorage.setItem(pageKey + "_lastSearchPage", page);
     }
 
@@ -193,20 +192,18 @@ document.addEventListener("DOMContentLoaded", () => {
             mainPagination.style.display = "block";
             resultMsg.style.display = "none";
             paginationHeader.style.display = "none";
-
-// Limpiar búsqueda guardada solo para esta página
             localStorage.removeItem(pageKey + "_lastSearchQuery");
             localStorage.removeItem(pageKey + "_lastSearchPage");
             return;
         }
 
-// Guardar búsqueda solo para esta página
         localStorage.setItem(pageKey + "_lastSearchQuery", query);
         localStorage.setItem(pageKey + "_lastSearchPage", 1);
 
         filteredResults = movieCards.filter(card => {
             const title = card.querySelector('.movie-title').textContent.toLowerCase();
             return title.includes(query);
+        });
 
         movieCards.forEach(card => card.style.display = 'none');
         resultMsg.style.display = "block";
@@ -224,10 +221,9 @@ document.addEventListener("DOMContentLoaded", () => {
             resultNoResult.textContent = "No se encontraron coincidencias";
             resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda. Intente nuevamente con algunas palabras clave diferentes.";
             paginationHeader.style.display = "none";
-         }
+        }
     }
 
-    // Eventos de búsqueda
     searchBtn.addEventListener('click', filterMovies);
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -236,24 +232,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-
-// --- NUEVO: Detectar si es sesión nueva y limpiar localStorage si es necesario ---
     const sessionKey = pageKey + "_sessionActive";
-
     if (!sessionStorage.getItem(sessionKey)) {
-        // Primera carga de esta pestaña o navegador abierto nuevo
         localStorage.removeItem(pageKey + "_lastSearchQuery");
         localStorage.removeItem(pageKey + "_lastSearchPage");
         sessionStorage.setItem(sessionKey, "true");
     }
 
-// =========================
-    // Restaurar búsqueda y página guardada (solo de esta página) al recargar
-    // =========================
     function restoreSearch() {
         const savedQuery = localStorage.getItem(pageKey + "_lastSearchQuery");
         const savedPage = parseInt(localStorage.getItem(pageKey + "_lastSearchPage"), 10) || 1;
-
         if (savedQuery && savedQuery !== "") {
             searchInput.value = savedQuery;
             filterMovies();
@@ -263,14 +251,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-restoreSearch(); // Para recarga normal
+    restoreSearch();
 
-    // =========================
-    // Restaurar al volver con botón atrás (bfcache)
-    // =========================
     window.addEventListener("pageshow", (event) => {
-        if (event.persisted) { // viene del historial (bfcache)
+        if (event.persisted) {
             restoreSearch();
         }
     });
+
 });
