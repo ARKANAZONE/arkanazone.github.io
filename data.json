@@ -60,57 +60,57 @@
 "INFANTIL": [
     {
       "title": "Película Infantil 1",
-      "image": "image/infantil1.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil1"
     },
     {
       "title": "Película Infantil 2",
-      "image": "image/infantil2.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil2"
     },
     {
       "title": "Película Infantil 3",
-      "image": "image/infantil3.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil3"
     },
     {
       "title": "Película Infantil 4",
-      "image": "image/infantil4.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil4"
     },
     {
       "title": "Película Infantil 5",
-      "image": "image/infantil5.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil5"
     },
     {
       "title": "Película Infantil 6",
-      "image": "image/infantil6.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil6"
     },
     {
       "title": "Película Infantil 7",
-      "image": "image/infantil7.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil7"
     },
     {
       "title": "Película Infantil 8",
-      "image": "image/infantil8.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil8"
     },
     {
       "title": "Película Infantil 9",
-      "image": "image/infantil9.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil9"
     },
     {
       "title": "Película Infantil 10",
-      "image": "image/infantil10.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil10"
     },
     {
       "title": "Película Infantil 11",
-      "image": "image/infantil11.jpg",
+      "image": "image/pelicula1.jpg",
       "url": "https://www.example.com/infantil11"
     }
   ],

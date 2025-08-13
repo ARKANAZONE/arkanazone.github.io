@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+// =========================
+    // Identificador único por página
+    // =========================
+    const pageKey = location.pathname; // Ej: "/index.html" o "/series.html"
+
+
     // =========================
     // Animación: mostrar banner (texto + logos)
     // =========================
@@ -34,7 +40,40 @@ document.addEventListener("DOMContentLoaded", () => {
             enlaceMobile.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
             
             scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
-            });
+    
+    // =========================
+    // Cargar portadas de la categoría INFANTIL en la columna izquierda
+    // =========================
+    const infantilContainer = document.getElementById('infantilContainer');
+    const infantilMovies = data.INFANTIL || [];
+    infantilMovies.forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+        infantilContainer.appendChild(card);
+    });
+
+        });
 
             // Duplicar las imágenes para crear el efecto de bucle infinito
             mobileImages.forEach(image => {
@@ -50,10 +89,109 @@ document.addEventListener("DOMContentLoaded", () => {
             enlaceMobile.appendChild(imgElement);                                 // Poner la imagen dentro del enlace
             
             scrollWrapper.appendChild(enlaceMobile);                              // Agregar el enlace (con imagen) al contenedor
-            });
+    
+    // =========================
+    // Cargar portadas de la categoría INFANTIL en la columna izquierda
+    // =========================
+    const infantilContainer = document.getElementById('infantilContainer');
+    const infantilMovies = data.INFANTIL || [];
+    infantilMovies.forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+        infantilContainer.appendChild(card);
+    });
+
+        });
+
+    // =========================
+    // Cargar portadas de la categoría INFANTIL en la columna izquierda
+    // =========================
+    const infantilContainer = document.getElementById('infantilContainer');
+    const infantilMovies = data.INFANTIL || [];
+    infantilMovies.forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+        infantilContainer.appendChild(card);
+    });
+
         })
         .catch(error => {
             console.error('Error cargando el archivo JSON:', error);
+
+    // =========================
+    // Cargar portadas de la categoría INFANTIL en la columna izquierda
+    // =========================
+    const infantilContainer = document.getElementById('infantilContainer');
+    const infantilMovies = data.INFANTIL || [];
+    infantilMovies.forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+        infantilContainer.appendChild(card);
+    });
+
         });
 // =========================
     // Contador de visitas
@@ -61,11 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const visitSpan = document.getElementById('visitCount');
     const STORAGE_KEY = 'visitCount';
     let visitCount = localStorage.getItem(STORAGE_KEY);
-    if (visitCount === null) {
-        visitCount = 0005555; // valor inicial
-    } else {
-        visitCount = parseInt(visitCount, 10);
-    }
+    visitCount = visitCount === null ? 5555 : parseInt(visitCount, 10);
     visitSpan.textContent = visitCount.toString().padStart(8, '0');
     setInterval(() => {
         visitCount++;
@@ -82,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pagination = document.getElementById('pagination');
     const paginationHeader = document.getElementById('pagination-header');
 
-    const itemsPerPage = 5;
+    const itemsPerPage = 10;
     let filteredResults = [];
 
     function renderPagination(currentPage, totalPages) {
@@ -106,7 +240,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.addEventListener("click", (e) => {
                     e.preventDefault();
                     showPage(page);
-                });
+        
+    // =========================
+    // Cargar portadas de la categoría INFANTIL en la columna izquierda
+    // =========================
+    const infantilContainer = document.getElementById('infantilContainer');
+    const infantilMovies = data.INFANTIL || [];
+    infantilMovies.forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+        infantilContainer.appendChild(card);
+    });
+
+        });
             } else {
                 btn.style.pointerEvents = "none";
                 btn.style.opacity = "0.5";
@@ -137,6 +304,10 @@ document.addEventListener("DOMContentLoaded", () => {
         renderPagination(page, Math.ceil(filteredResults.length / itemsPerPage));
         paginationHeader.textContent = `PÁGINA ${page} DE ${Math.ceil(filteredResults.length / itemsPerPage)}`;
         paginationHeader.style.display = "block";
+    
+
+// Guardar página actual (con identificador de página)
+        localStorage.setItem(pageKey + "_lastSearchPage", page);
     }
 
     function filterMovies() {
@@ -153,13 +324,54 @@ document.addEventListener("DOMContentLoaded", () => {
             pagination.style.display = "none";
             mainPagination.style.display = "block";
             resultMsg.style.display = "none";
-            document.getElementById('pagination-header').textContent = "";
+            paginationHeader.style.display = "none";
+
+// Limpiar búsqueda guardada solo para esta página
+            localStorage.removeItem(pageKey + "_lastSearchQuery");
+            localStorage.removeItem(pageKey + "_lastSearchPage");
             return;
         }
+
+// Guardar búsqueda solo para esta página
+        localStorage.setItem(pageKey + "_lastSearchQuery", query);
+        localStorage.setItem(pageKey + "_lastSearchPage", 1);
 
         filteredResults = movieCards.filter(card => {
             const title = card.querySelector('.movie-title').textContent.toLowerCase();
             return title.includes(query);
+
+    // =========================
+    // Cargar portadas de la categoría INFANTIL en la columna izquierda
+    // =========================
+    const infantilContainer = document.getElementById('infantilContainer');
+    const infantilMovies = data.INFANTIL || [];
+    infantilMovies.forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+        infantilContainer.appendChild(card);
+    });
+
         });
 
         movieCards.forEach(card => card.style.display = 'none');
@@ -187,6 +399,44 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === 'Enter') {
             e.preventDefault();
             filterMovies();
+        }
+    });
+
+
+// --- NUEVO: Detectar si es sesión nueva y limpiar localStorage si es necesario ---
+    const sessionKey = pageKey + "_sessionActive";
+
+    if (!sessionStorage.getItem(sessionKey)) {
+        // Primera carga de esta pestaña o navegador abierto nuevo
+        localStorage.removeItem(pageKey + "_lastSearchQuery");
+        localStorage.removeItem(pageKey + "_lastSearchPage");
+        sessionStorage.setItem(sessionKey, "true");
+    }
+
+// =========================
+    // Restaurar búsqueda y página guardada (solo de esta página) al recargar
+    // =========================
+    function restoreSearch() {
+        const savedQuery = localStorage.getItem(pageKey + "_lastSearchQuery");
+        const savedPage = parseInt(localStorage.getItem(pageKey + "_lastSearchPage"), 10) || 1;
+
+        if (savedQuery && savedQuery !== "") {
+            searchInput.value = savedQuery;
+            filterMovies();
+            if (filteredResults.length > 0 && savedPage > 1) {
+                showPage(savedPage);
+            }
+        }
+    }
+
+restoreSearch(); // Para recarga normal
+
+    // =========================
+    // Restaurar al volver con botón atrás (bfcache)
+    // =========================
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) { // viene del historial (bfcache)
+            restoreSearch();
         }
     });
 });
