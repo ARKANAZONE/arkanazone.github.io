@@ -1,68 +1,50 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    // =========================
-    // Identificador único por página
-    // =========================
     const pageKey = location.pathname;
 
-    // =========================
-    // Animación: mostrar banner (texto + logos)
-    // =========================
     document.getElementById('banner').classList.add('visible');
 
     // =========================
-    // Cargar portadas móviles desde data.json
+    // Cargar portadas desde data.json
     // =========================
-    fetch('data.json') 
+    fetch('data.json')
         .then(response => response.json())
         .then(data => {
             const scrollWrapper = document.getElementById('scrollWrapper');
 
-            // =========================
-            // Filtrar las 10 primeras imágenes de la categoría "MOVIL"
-            // =========================
+            // MOVIL
             const mobileImages = data.MOVIL.slice(0, 10);
-
-            // =========================
-            // Agregar imágenes con enlaces (y duplicarlas para crear efecto de bucle infinito)
-            // =========================
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.image;  
-                imgElement.alt = image.title; 
+                imgElement.src = image.image;
+                imgElement.alt = image.title;
                 imgElement.classList.add('scroll-item');
 
-                // Crear el enlace <a> para las portadas móviles
-                const enlaceMobile = document.createElement('a');                    
-                enlaceMobile.href = image.url;                                       
-                enlaceMobile.target = '_self';                                       
-                enlaceMobile.appendChild(imgElement);                                 
+                const enlaceMobile = document.createElement('a');
+                enlaceMobile.href = image.url;
+                enlaceMobile.target = '_self';
+                enlaceMobile.appendChild(imgElement);
 
-                scrollWrapper.appendChild(enlaceMobile);                              
+                scrollWrapper.appendChild(enlaceMobile);
             });
 
-            // Duplicar las imágenes para el efecto de bucle infinito
             mobileImages.forEach(image => {
                 const imgElement = document.createElement('img');
-                imgElement.src = image.image;  
-                imgElement.alt = image.title; 
+                imgElement.src = image.image;
+                imgElement.alt = image.title;
                 imgElement.classList.add('scroll-item');
 
-                // Crear el enlace <a> para las portadas móviles duplicadas
-                const enlaceMobile = document.createElement('a');                    
-                enlaceMobile.href = image.url;                                       
-                enlaceMobile.target = '_self';                                       
-                enlaceMobile.appendChild(imgElement);                                 
+                const enlaceMobile = document.createElement('a');
+                enlaceMobile.href = image.url;
+                enlaceMobile.target = '_self';
+                enlaceMobile.appendChild(imgElement);
 
-                scrollWrapper.appendChild(enlaceMobile);                              
+                scrollWrapper.appendChild(enlaceMobile);
             });
 
-            // =========================
-            // Cargar portadas de la categoría INFANTIL en la columna izquierda (sin duplicado)
-            // =========================
+            // INFANTIL
             const infantilContainer = document.getElementById('infantilContainer');
-            const infantilMovies = data.INFANTIL.slice(0, 11);  // Solo cargar las primeras 11 películas
+            const infantilMovies = data.INFANTIL.slice(0, 11);
             infantilMovies.forEach(movie => {
                 const card = document.createElement('div');
                 card.classList.add('movie-card');
@@ -89,10 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.appendChild(link);
                 infantilContainer.appendChild(card);
             });
-
         })
         .catch(error => {
-            console.error('Error cargando el archivo JSON:', error);
+            console.error('Error cargando el archivo data.json:', error);
         });
 
     // =========================
@@ -110,13 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 60000);
 
     // =========================
-    // Búsqueda y paginación dinámica
+    // Búsqueda y paginación con peliculastodas.json
     // =========================
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
-    const movieCards = Array.from(document.querySelectorAll('.movie-card'));
     const pagination = document.getElementById('pagination');
     const paginationHeader = document.getElementById('pagination-header');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
 
     const itemsPerPage = 10;
     let filteredResults = [];
@@ -168,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function showPage(page) {
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-        movieCards.forEach(card => card.style.display = 'none');
+        filteredResults.forEach(card => card.style.display = 'none');
         filteredResults.slice(start, end).forEach(card => card.style.display = 'flex');
         renderPagination(page, Math.ceil(filteredResults.length / itemsPerPage));
         paginationHeader.textContent = `PÁGINA ${page} DE ${Math.ceil(filteredResults.length / itemsPerPage)}`;
@@ -187,11 +168,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const mainPagination = document.getElementById('main-pagination');
 
         if (query === "") {
-            movieCards.forEach(card => card.style.display = 'flex');
+            document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'flex');
             pagination.style.display = "none";
             mainPagination.style.display = "block";
             resultMsg.style.display = "none";
             paginationHeader.style.display = "none";
+            searchResultsContainer.innerHTML = "";
             localStorage.removeItem(pageKey + "_lastSearchQuery");
             localStorage.removeItem(pageKey + "_lastSearchPage");
             return;
@@ -200,28 +182,65 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(pageKey + "_lastSearchQuery", query);
         localStorage.setItem(pageKey + "_lastSearchPage", 1);
 
-        filteredResults = movieCards.filter(card => {
-            const title = card.querySelector('.movie-title').textContent.toLowerCase();
-            return title.includes(query);
-        });
-
-        movieCards.forEach(card => card.style.display = 'none');
+        document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'none');
         resultMsg.style.display = "block";
         mainPagination.style.display = "none";
-        resultTitle.textContent = `Resultados para: "${query}"`;
+        searchResultsContainer.innerHTML = "";
 
-        if (filteredResults.length > 0) {
-            showPage(1);
-            resultImage.style.display = "none";
-            resultNoResult.textContent = "";
-            resultDesc.textContent = `${filteredResults.length} resultados encontrados.`;
-        } else {
-            pagination.style.display = "none";
-            resultImage.style.display = "block";
-            resultNoResult.textContent = "No se encontraron coincidencias";
-            resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda. Intente nuevamente con algunas palabras clave diferentes.";
-            paginationHeader.style.display = "none";
-        }
+        fetch('peliculastodas.json')
+            .then(response => response.json())
+            .then(data => {
+                const todas = data.TODAS || [];
+                const matched = todas.filter(p => p.title.toLowerCase().includes(query));
+                filteredResults = [];
+
+                matched.forEach(movie => {
+                    const card = document.createElement('div');
+                    card.classList.add('movie-card');
+
+                    const link = document.createElement('a');
+                    link.href = movie.url;
+                    link.target = '_self';
+
+                    const img = document.createElement('img');
+                    img.src = movie.image;
+                    img.alt = movie.title;
+
+                    const overlay = document.createElement('div');
+                    overlay.classList.add('title-overlay');
+                    overlay.textContent = movie.title;
+
+                    const titleDiv = document.createElement('div');
+                    titleDiv.classList.add('movie-title');
+                    titleDiv.textContent = movie.title;
+
+                    link.appendChild(img);
+                    link.appendChild(overlay);
+                    link.appendChild(titleDiv);
+                    card.appendChild(link);
+
+                    filteredResults.push(card);
+                    searchResultsContainer.appendChild(card);
+                });
+
+                resultTitle.textContent = `Resultados para: "${query}"`;
+
+                if (matched.length > 0) {
+                    resultImage.style.display = "none";
+                    resultNoResult.textContent = "";
+                    resultDesc.textContent = `${matched.length} resultados encontrados.`;
+                    showPage(1);
+                } else {
+                    pagination.style.display = "none";
+                    resultImage.style.display = "block";
+                    resultNoResult.textContent = "No se encontraron coincidencias";
+                    resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda.";
+                    paginationHeader.style.display = "none";
+                }
+            })
+            .catch(error => {
+                console.error("Error cargando peliculastodas.json:", error);
+            });
     }
 
     searchBtn.addEventListener('click', filterMovies);
