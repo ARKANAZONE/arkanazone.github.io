@@ -200,12 +200,12 @@ nav {
     }
 
     .left-column {
-      flex: 1 1 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 15px;
-      align-content: flex-start;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 15px;
+    justify-content: flex-start;
+    /* Quitamos flex: 1 1 auto para evitar conflictos con flexbox */
+}
 
  .movie-card img {
       width: 100%;  /* Asegura que la imagen ocupe todo el ancho disponible */
@@ -218,14 +218,15 @@ nav {
     }
 
     .movie-card {
-      width: 160px;
-      position: relative;
-      text-align: center;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    width: calc((100% / 5) - 12px); /* 5 portadas por fila, descontando gaps */
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .right-column {
       flex: 0 0 320px;
