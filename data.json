@@ -123,52 +123,52 @@
     },
     {
       "title": "Película de Terror 2",
-      "image": "image/terror2.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror2"
     },
     {
       "title": "Película de Terror 3",
-      "image": "image/terror3.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror3"
     },
     {
       "title": "Película de Terror 4",
-      "image": "image/terror4.jpg",
+     "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror4"
     },
     {
       "title": "Película de Terror 5",
-      "image": "image/terror5.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror5"
     },
     {
       "title": "Película de Terror 6",
-      "image": "image/terror6.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror6"
     },
     {
       "title": "Película de Terror 7",
-      "image": "image/terror7.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror7"
     },
     {
       "title": "Película de Terror 8",
-      "image": "image/terror8.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror8"
     },
     {
       "title": "Película de Terror 9",
-      "image": "image/terror9.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror9"
     },
     {
       "title": "Película de Terror 10",
-      "image": "image/terror10.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror10"
     },
     {
       "title": "Película de Terror 11",
-      "image": "image/terror11.jpg",
+      "image": "image/terror1.jpg",
       "url": "https://www.example.com/terror11"
     }
   ],

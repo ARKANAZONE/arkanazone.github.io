@@ -36,23 +36,24 @@
     </div>
  
     <nav>
-        <a href="URL_DE_INICIO" target="_self">Inicio</a>
-        <a class="active" href="URL_DE_INFANTIL" target="_self">Infantil</a>
+        <a class="active" href="index.html" target="_self">Inicio</a>
+        <a href="peliculas/peliculas.html" target="_self">Películas</a>
         <a href="URL_DE_SERIES" target="_self">Series</a>
-        <a href="URL_DE_TERROR" target="_self">Terror</a>
-        <a href="URL_DE_PELICULAS" target="_self">Películas</a>
-        <a href="URL_DE_NOVELAS" target="_self">Novelas</a>
-        <a href="URL_DE_ACCION" target="_self">Acción</a>
-        <a href="URL_DE_DOCUMENTALES" target="_self">Documentales</a>
-        <a href="URL_DE_DORAMAS" target="_self">Doramas</a>
-        <a href="URL_DE_ANIME" target="_self">Ánime</a>
-        <a href="URL_DE_PLATAFORMA" target="_self">Plataforma</a>
+        <a href="URL_DE_TERROR" target="_self">Novelas</a>
+        <a href="URL_DE_PELICULAS" target="_self">Documentales</a>
+        <a href="URL_DE_NOVELAS" target="_self">Ánimes</a>
+        <a href="URL_DE_ACCION" target="_self">Doramas</a>
+        <a href="URL_DE_DOCUMENTALES" target="_self">Plataforma</a>
         <a href="URL_DE_SERVICIOS" target="_self">Servicios</a>
         <a href="URL_DE_TIENDA" target="_self">Tienda</a>
     </nav>
 
     <div class="container">
         <div class="left-column" id="infantilContainer">
+
+<!-- Texto de categoría -->
+<div class="categoria-titulo" id="categoriaTitulo">CATEGORÍA: Películas</div>
+
             <div id="search-result-msg" style="width: 100%; text-align: center; margin-bottom: 10px; display: none;">
                 <div id="search-result-title" style="font-size: 50px; font-weight: bold; color: #ffffff; margin-bottom: 8px;"></div>
                 <img id="search-result-image" src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png" style="max-width: 180px; margin: 0 auto 8px; display: none;"/>
@@ -64,8 +65,9 @@
 
             </div>
         </div>
-        <div class="right-column">
-            <div class="search-box">
+       
+ <div class="right-column">
+<div class="search-box">
                 <input id="searchInput" type="text" placeholder="Buscar contenido..."/>
                 <button id="searchBtn" class="btn-estandar">BUSCAR</button>
             </div>
@@ -73,12 +75,33 @@
                 <h3>Visitas</h3>
                 <span id="visitCount">00005555</span>
             </div>
+<aside class="sidebar-genre">
+  <h3 class="sidebar-title">Géneros</h3>
+  <ul class="genre-list">
+    <li><a href="/peliculas/category/infantil.html">🖴 Infantil</a></li>
+    <li><a href="/genero/accion">🖴 Acción</a></li>
+    <li><a href="/genero/bélico">🖴 Bélico</a></li>
+    <li><a href="/genero/drama">🖴 Drama</a></li>
+    <li><a href="/genero/crimen">🖴 Crimen</a></li>
+    <li><a href="/genero/terror">🖴 Terror</a></li>
+    <li><a href="/genero/comedia">🖴 Comedia</a></li>
+    <li><a href="/genero/fantasía">🖴 Fantasía</a></li>
+    <li><a href="/genero/aventura">🖴 Aventura</a></li>
+    <li><a href="/genero/sci-fi">🖴 Sci-Fi</a></li>
+    <li><a href="/genero/Romance">🖴 Romance</a></li>
+    <li><a href="/genero/suspenso">🖴 Suspenso</a></li>
+    <li><a href="/genero/western">🖴 Western</a></li>
+    <li><a href="/genero/ánime">🖴 Ánime</a></li>
+    <!-- Agrega más géneros según tu contenido -->
+  </ul>
+</aside>
             <div class="ads">
                 <h3>Workspace</h3>
                 <a href="#"><img src="https://m.media-amazon.com/images/I/91gbE0ivKjL._UF894,1000_QL80_.jpg" alt="Publicidad"/></a>
             </div>
         </div>
     </div>
+
 
     <div id="dynamic-pagination-container">
         <div id="pagination-header"></div>
@@ -87,6 +110,9 @@
 
     <div id="main-pagination"></div>
 
+
     <script src="script.js"></script>
+
+
 </body>
 </html>

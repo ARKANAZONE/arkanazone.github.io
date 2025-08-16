@@ -1,84 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const pageKey = location.pathname;
-
     document.getElementById('banner').classList.add('visible');
 
-    // =========================
-    // Cargar portadas desde data.json
-    // =========================
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            const scrollWrapper = document.getElementById('scrollWrapper');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const pagination = document.getElementById('pagination');
+    const paginationHeader = document.getElementById('pagination-header');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    const infantilContainer = document.getElementById('infantilContainer');
+    const categoriaTitulo = document.getElementById('categoriaTitulo');
+    const mainPagination = document.getElementById('main-pagination');
+    const itemsPerPage = 10;
+    let filteredResults = [];
+    let allInfantilCards = [];
 
-            // MOVIL
-            const mobileImages = data.MOVIL.slice(0, 10);
-            mobileImages.forEach(image => {
-                const imgElement = document.createElement('img');
-                imgElement.src = image.image;
-                imgElement.alt = image.title;
-                imgElement.classList.add('scroll-item');
-
-                const enlaceMobile = document.createElement('a');
-                enlaceMobile.href = image.url;
-                enlaceMobile.target = '_self';
-                enlaceMobile.appendChild(imgElement);
-
-                scrollWrapper.appendChild(enlaceMobile);
-            });
-
-            mobileImages.forEach(image => {
-                const imgElement = document.createElement('img');
-                imgElement.src = image.image;
-                imgElement.alt = image.title;
-                imgElement.classList.add('scroll-item');
-
-                const enlaceMobile = document.createElement('a');
-                enlaceMobile.href = image.url;
-                enlaceMobile.target = '_self';
-                enlaceMobile.appendChild(imgElement);
-
-                scrollWrapper.appendChild(enlaceMobile);
-            });
-
-            // INFANTIL
-            const infantilContainer = document.getElementById('infantilContainer');
-            const infantilMovies = data.INFANTIL.slice(0, 11);
-            infantilMovies.forEach(movie => {
-                const card = document.createElement('div');
-                card.classList.add('movie-card');
-
-                const link = document.createElement('a');
-                link.href = movie.url;
-                link.target = '_self';
-
-                const img = document.createElement('img');
-                img.src = movie.image;
-                img.alt = movie.title;
-
-                const overlay = document.createElement('div');
-                overlay.classList.add('title-overlay');
-                overlay.textContent = movie.title;
-
-                const titleDiv = document.createElement('div');
-                titleDiv.classList.add('movie-title');
-                titleDiv.textContent = movie.title;
-
-                link.appendChild(img);
-                link.appendChild(overlay);
-                link.appendChild(titleDiv);
-                card.appendChild(link);
-                infantilContainer.appendChild(card);
-            });
-        })
-        .catch(error => {
-            console.error('Error cargando el archivo data.json:', error);
-        });
-
-    // =========================
+    // ========================
     // Contador de visitas
-    // =========================
+    // ========================
     const visitSpan = document.getElementById('visitCount');
     const STORAGE_KEY = 'visitCount';
     let visitCount = localStorage.getItem(STORAGE_KEY);
@@ -90,43 +28,35 @@ document.addEventListener("DOMContentLoaded", () => {
         visitSpan.textContent = visitCount.toString().padStart(8, '0');
     }, 60000);
 
-    // =========================
-    // Búsqueda y paginación con peliculastodas.json
-    // =========================
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const pagination = document.getElementById('pagination');
-    const paginationHeader = document.getElementById('pagination-header');
-    const searchResultsContainer = document.getElementById('searchResultsContainer');
-
-    const itemsPerPage = 10;
-    let filteredResults = [];
-
-    function renderPagination(currentPage, totalPages) {
+    // ========================
+    // Renderizador de paginación
+    // ========================
+    function renderPagination(currentPage, totalPages, callback) {
         pagination.innerHTML = "";
-        pagination.style.display = filteredResults.length > 0 ? "block" : "none";
+        pagination.style.display = totalPages > 1 ? "block" : "none";
 
         const createBtn = (text, page, isActive = false, isDisabled = false) => {
             const btn = document.createElement("a");
             btn.textContent = text;
-            btn.style.padding = "6px 12px";
-            btn.style.background = isActive ? "#00aaff" : "#222";
-            btn.style.color = "#fff";
-            btn.style.textDecoration = "none";
-            btn.style.borderRadius = "4px";
-            btn.style.border = "2px solid #00aaff";
-            btn.style.margin = "2px";
-            btn.style.fontWeight = "bold";
-            btn.style.fontFamily = "sans-serif";
             btn.href = "#";
+            btn.style.cssText = `
+                padding: 6px 12px;
+                background: ${isActive ? "#00aaff" : "#222"};
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                border: 2px solid #00aaff;
+                margin: 2px;
+                font-weight: bold;
+                font-family: sans-serif;
+                opacity: ${isDisabled ? "0.5" : "1"};
+                pointer-events: ${isDisabled ? "none" : "auto"};
+            `;
             if (!isDisabled && page !== null) {
                 btn.addEventListener("click", (e) => {
                     e.preventDefault();
-                    showPage(page);
+                    callback(page);
                 });
-            } else {
-                btn.style.pointerEvents = "none";
-                btn.style.opacity = "0.5";
             }
             return btn;
         };
@@ -146,18 +76,114 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentPage < totalPages) pagination.appendChild(createBtn("Siguiente", currentPage + 1));
     }
 
-    function showPage(page) {
+    // ========================
+    // Mostrar página infantil
+    // ========================
+    function showInfantilPage(page) {
+        const totalPages = Math.ceil(allInfantilCards.length / itemsPerPage);
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        allInfantilCards.forEach((card, index) => {
+            card.style.display = (index >= start && index < end) ? 'flex' : 'none';
+        });
+
+        renderPagination(page, totalPages, showInfantilPage);
+        paginationHeader.textContent = `PÁGINA ${page} DE ${totalPages}`;
+        paginationHeader.style.display = totalPages > 1 ? "block" : "none";
+        mainPagination.style.display = "block";
+    }
+
+    // ========================
+    // Cargar data.json (MOVIL + scroll)
+    // ========================
+    fetch('../../data.json')
+        .then(response => response.json())
+        .then(data => {
+            const scrollWrapper = document.getElementById('scrollWrapper');
+
+            data.MOVIL.slice(0, 10).forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image.image;
+                imgElement.alt = image.title;
+                imgElement.classList.add('scroll-item');
+
+                const enlaceMobile = document.createElement('a');
+                enlaceMobile.href = image.url;
+                enlaceMobile.target = '_self';
+                enlaceMobile.appendChild(imgElement);
+
+                scrollWrapper.appendChild(enlaceMobile);
+            });
+
+// Duplicado para efecto de bucle infinito
+        data.MOVIL.slice(0, 10).forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image.image;
+            imgElement.alt = image.title;
+            imgElement.classList.add('scroll-item');
+
+            const enlaceMobile = document.createElement('a');
+            enlaceMobile.href = image.url;
+            enlaceMobile.target = '_self';
+            enlaceMobile.appendChild(imgElement);
+
+            scrollWrapper.appendChild(enlaceMobile);
+        });
+
+            const category = document.body.getAttribute("data-category");
+
+if (data[category]) {
+    data[category].forEach(movie => {
+        const card = document.createElement('div');
+        card.classList.add('movie-card');
+
+        const link = document.createElement('a');
+        link.href = movie.url;
+        link.target = '_self';
+
+        const img = document.createElement('img');
+        img.src = movie.image;
+        img.alt = movie.title;
+
+        const overlay = document.createElement('div');
+        overlay.classList.add('title-overlay');
+        overlay.textContent = movie.title;
+
+        const titleDiv = document.createElement('div');
+        titleDiv.classList.add('movie-title');
+        titleDiv.textContent = movie.title;
+
+        link.appendChild(img);
+        link.appendChild(overlay);
+        link.appendChild(titleDiv);
+        card.appendChild(link);
+
+        infantilContainer.appendChild(card);
+        allInfantilCards.push(card);
+    });
+
+    showInfantilPage(1);
+}
+
+
+    // ========================
+    // Mostrar página de búsqueda
+    // ========================
+    function showSearchPage(page) {
+        const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         filteredResults.forEach(card => card.style.display = 'none');
         filteredResults.slice(start, end).forEach(card => card.style.display = 'flex');
-        renderPagination(page, Math.ceil(filteredResults.length / itemsPerPage));
-        paginationHeader.textContent = `PÁGINA ${page} DE ${Math.ceil(filteredResults.length / itemsPerPage)}`;
-        paginationHeader.style.display = "block";
 
-        localStorage.setItem(pageKey + "_lastSearchPage", page);
+        renderPagination(page, totalPages, showSearchPage);
+        paginationHeader.textContent = `PÁGINA ${page} DE ${totalPages}`;
+        paginationHeader.style.display = "block";
     }
 
+    // ========================
+    // Filtrar búsqueda
+    // ========================
     function filterMovies() {
         const query = searchInput.value.toLowerCase().trim();
         const resultMsg = document.getElementById('search-result-msg');
@@ -165,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultImage = document.getElementById('search-result-image');
         const resultNoResult = document.getElementById('search-result-noresult');
         const resultDesc = document.getElementById('search-result-desc');
-        const mainPagination = document.getElementById('main-pagination');
+
+        if (categoriaTitulo) categoriaTitulo.style.display = query === "" ? 'block' : 'none';
 
         if (query === "") {
             document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'flex');
@@ -176,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
             searchResultsContainer.innerHTML = "";
             localStorage.removeItem(pageKey + "_lastSearchQuery");
             localStorage.removeItem(pageKey + "_lastSearchPage");
+            showInfantilPage(1);
             return;
         }
 
@@ -183,15 +211,14 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(pageKey + "_lastSearchPage", 1);
 
         document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'none');
-        resultMsg.style.display = "block";
         mainPagination.style.display = "none";
+        resultMsg.style.display = "block";
         searchResultsContainer.innerHTML = "";
 
         fetch('peliculastodas.json')
             .then(response => response.json())
             .then(data => {
-                const todas = data.TODAS || [];
-                const matched = todas.filter(p => p.title.toLowerCase().includes(query));
+                const matched = (data.TODAS || []).filter(p => p.title.toLowerCase().includes(query));
                 filteredResults = [];
 
                 matched.forEach(movie => {
@@ -225,21 +252,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 resultTitle.textContent = `Resultados para: "${query}"`;
 
-                if (matched.length > 0) {
+                if (filteredResults.length > 0) {
                     resultImage.style.display = "none";
                     resultNoResult.textContent = "";
-                    resultDesc.textContent = `${matched.length} resultados encontrados.`;
-                    showPage(1);
+                    resultDesc.textContent = `${filteredResults.length} resultados encontrados.`;
+                    showSearchPage(1);
                 } else {
                     pagination.style.display = "none";
+                    paginationHeader.style.display = "none";
                     resultImage.style.display = "block";
                     resultNoResult.textContent = "No se encontraron coincidencias";
                     resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda.";
-                    paginationHeader.style.display = "none";
                 }
-            })
-            .catch(error => {
-                console.error("Error cargando peliculastodas.json:", error);
             });
     }
 
@@ -251,6 +275,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // ========================
+    // Restaurar búsqueda si hay datos previos
+    // ========================
     const sessionKey = pageKey + "_sessionActive";
     if (!sessionStorage.getItem(sessionKey)) {
         localStorage.removeItem(pageKey + "_lastSearchQuery");
@@ -265,7 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
             searchInput.value = savedQuery;
             filterMovies();
             if (filteredResults.length > 0 && savedPage > 1) {
-                showPage(savedPage);
+                showSearchPage(savedPage);
             }
         }
     }
@@ -277,5 +304,4 @@ document.addEventListener("DOMContentLoaded", () => {
             restoreSearch();
         }
     });
-
 });
