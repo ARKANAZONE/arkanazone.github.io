@@ -271,12 +271,19 @@ nav {
       max-width: 160px;
     }
 
+/* Centrar la paginación y su encabezado */
 #dynamic-pagination-container,
 #pagination-header,
 #pagination {
-    text-align: center;   /* centra contenido horizontalmente */
-    margin: 0 auto;       /* asegura que los bloques se centren */
+    width: 100%;
+    text-align: center;
 }
+
+/* Asegura que los enlaces se muestren en línea y centrados */
+#pagination a {
+    display: inline-block;
+}
+
 
 #pagination-header {
     margin-bottom: 10px;  /* espacio entre el header y los botones */
@@ -285,9 +292,6 @@ nav {
     color: white;
 }
 
-#pagination a {
-    display: inline-block; /* mantiene los botones alineados centrados */
-}
 
     .title-overlay {
       position: absolute;
