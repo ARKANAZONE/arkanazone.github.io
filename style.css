@@ -271,21 +271,23 @@ nav {
       max-width: 160px;
     }
 
-#dynamic-pagination-container {
-    text-align: center;
+#dynamic-pagination-container,
+#pagination-header,
+#pagination {
+    text-align: center;   /* centra contenido horizontalmente */
+    margin: 0 auto;       /* asegura que los bloques se centren */
 }
 
 #pagination-header {
-    text-align: center;
-    margin-bottom: 2px;  /* ajusta para pegar PAGINACION X DE Y A LA PAGINACION EN LA BUSQUEDA */
+    margin-bottom: 10px;  /* espacio entre el header y los botones */
     font-weight: bold;
     font-size: 18px;
     color: white;
 }
 
 #pagination a {
-    display: inline-block;
-} 
+    display: inline-block; /* mantiene los botones alineados centrados */
+}
 
     .title-overlay {
       position: absolute;
