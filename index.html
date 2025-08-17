@@ -52,8 +52,8 @@
     <div class="container">
         <div class="left-column" id="infantilContainer">
 
-<!-- Texto de categoría -->
-<div class="categoria-titulo" id="categoriaTitulo">CATEGORÍA: Películas</div>
+            <!-- Texto de categoría -->
+            <div class="categoria-titulo" id="categoriaTitulo">CATEGORÍA: Películas</div>
 
             <div id="search-result-msg" style="width: 100%; text-align: center; margin-bottom: 10px; display: none;">
                 <div id="search-result-title" style="font-size: 50px; font-weight: bold; color: #ffffff; margin-bottom: 8px;"></div>
@@ -61,14 +61,13 @@
                 <div id="search-result-noresult" style="font-size: 25px; font-weight: bold; color: #ffffff; margin-bottom: 6px;"></div>
                 <div id="search-result-desc" style="font-size: 14px; color: #cccccc;"></div>
 
-<!-- Agrega esto justo después -->
-<div id="searchResultsContainer" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;"></div>
-
+                <!-- Agrega esto justo después -->
+                <div id="searchResultsContainer" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;"></div>
             </div>
         </div>
        
- <div class="right-column">
-<div class="search-box">
+        <div class="right-column">
+            <div class="search-box">
                 <input id="searchInput" type="text" placeholder="Buscar contenido..."/>
                 <button id="searchBtn" class="btn-estandar">BUSCAR</button>
             </div>
@@ -78,41 +77,42 @@
                 <span id="visitCount">00005555</span>
             </div>
 
-<aside class="sidebar-genre">
-  <h3 class="sidebar-title">Géneros</h3>
-  <ul class="genre-list">
-    <li><a href="/peliculas/category/infantil.html">🖴 Infantil</a></li>
-    <li><a href="/genero/accion">🖴 Acción</a></li>
-    <li><a href="/genero/bélico">🖴 Bélico</a></li>
-    <li><a href="/genero/drama">🖴 Drama</a></li>
-    <li><a href="/genero/crimen">🖴 Crimen</a></li>
-    <li><a href="/genero/terror">🖴 Terror</a></li>
-    <li><a href="/genero/comedia">🖴 Comedia</a></li>
-    <li><a href="/genero/fantasía">🖴 Fantasía</a></li>
-    <li><a href="/genero/aventura">🖴 Aventura</a></li>
-    <li><a href="/genero/sci-fi">🖴 Sci-Fi</a></li>
-    <li><a href="/genero/Romance">🖴 Romance</a></li>
-    <li><a href="/genero/suspenso">🖴 Suspenso</a></li>
-    <li><a href="/genero/western">🖴 Western</a></li>
-    <li><a href="/genero/ánime">🖴 Ánime</a></li>
-    <!-- Agrega más géneros según tu contenido -->
-  </ul>
-</aside>
+            <aside class="sidebar-genre">
+                <h3 class="sidebar-title">Géneros</h3>
+                <ul class="genre-list">
+                    <li><a href="/peliculas/category/infantil.html">🖴 Infantil</a></li>
+                    <li><a href="/genero/accion">🖴 Acción</a></li>
+                    <li><a href="/genero/bélico">🖴 Bélico</a></li>
+                    <li><a href="/genero/drama">🖴 Drama</a></li>
+                    <li><a href="/genero/crimen">🖴 Crimen</a></li>
+                    <li><a href="/genero/terror">🖴 Terror</a></li>
+                    <li><a href="/genero/comedia">🖴 Comedia</a></li>
+                    <li><a href="/genero/fantasía">🖴 Fantasía</a></li>
+                    <li><a href="/genero/aventura">🖴 Aventura</a></li>
+                    <li><a href="/genero/sci-fi">🖴 Sci-Fi</a></li>
+                    <li><a href="/genero/Romance">🖴 Romance</a></li>
+                    <li><a href="/genero/suspenso">🖴 Suspenso</a></li>
+                    <li><a href="/genero/western">🖴 Western</a></li>
+                    <li><a href="/genero/ánime">🖴 Ánime</a></li>
+                </ul>
+            </aside>
+
             <div class="ads">
                 <h3>Workspace</h3>
-  <div class="ads-img-wrapper">
-                <a href="#"><img src="https://m.media-amazon.com/images/I/91gbE0ivKjL._UF894,1000_QL80_.jpg" alt="Publicidad"/></a>
+                <div class="ads-img-wrapper">
+                    <a href="#"><img src="https://m.media-amazon.com/images/I/91gbE0ivKjL._UF894,1000_QL80_.jpg" alt="Publicidad"/></a>
+                </div>
             </div>
         </div>
+    </div>
 
-
+    <!-- Paginación centrada en toda la página -->
     <div id="dynamic-pagination-container">
         <div id="pagination-header"></div>
         <div id="pagination" style="display: none;"></div>
     </div>
 
     <div id="main-pagination"></div>
-
 
     <script src="script.js"></script>
 </body>

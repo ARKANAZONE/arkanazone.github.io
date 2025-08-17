@@ -272,18 +272,10 @@ nav {
     }
 
 /* Centrar la paginación y su encabezado */
-#dynamic-pagination-container,
-#pagination-header,
-#pagination {
-    width: 100%;
+#dynamic-pagination-container {
     text-align: center;
+    margin: 15px 0; /* opcional para separar de las películas */
 }
-
-/* Asegura que los enlaces se muestren en línea y centrados */
-#pagination a {
-    display: inline-block;
-}
-
 
 #pagination-header {
     margin-bottom: 10px;  /* espacio entre el header y los botones */
@@ -291,6 +283,11 @@ nav {
     font-size: 18px;
     color: white;
 }
+
+#pagination a {
+    display: inline-block;
+}
+
 
 
     .title-overlay {
