@@ -331,40 +331,42 @@ nav {
       cursor: pointer;
     }
 
-    .visits-counter h3,
-.ads h3 {
-  font-family: Arial;
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;               /* o #fff si prefieres blanco */
-  background-color: #00cfff; /* se conserva */
-  margin: 0;
-  padding: 5px;
-  border-radius: 3px;
-text-align: center;
+    /* Contenedor general centrado */
+.visits-counter {
+  text-align: center; /* centra ambos elementos */
+  margin: 6px 0;     /* espacio arriba y abajo */
 }
 
-    .visits-counter span {
-      display: inline-block;
-      font-size: 24px;
-      background-color: red;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
+/* 🔹 Recuadro celeste independiente para el título */
+.visits-counter h3 {
+  display: block;       /* ajusta al ancho al contenido */
+  background-color: #00cfff;   /* fondo celeste */
+  color: #000;                 /* texto negro */
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 15px 0;          /* espacio entre título y contador */
+  text-align: center;
+}
 
-    .visits-counter {
-      text-align: center;  /* Centra el contenido dentro del contenedor */
-      width: 100%;          /* Asegura que el contenedor ocupe todo el ancho disponible */
-      padding: 10px 0;      /* Añade algo de espacio arriba y abajo */
-    }
+/* 🔹 Contador en recuadro rojo independiente debajo */
+.visits-counter #visitCount {
+  display: inline-block;              /* fuerza un bloque nuevo debajo */
+  background-color: red;       /* fondo rojo */
+  color: #fff;                 /* texto blanco */
+  padding: 8px 8px;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;              /* centra el bloque */
+}
 
-    .ads img {
-      width: 100%;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
+
+
+
+
 
     @media (max-width: 768px) {
       .banner-text h1 {
@@ -442,3 +444,60 @@ text-align: center;
 }
 
 
+  .ads {
+  position: relative;
+  display: inline-block;
+  margin: 10px auto;
+}
+
+/* 🔹 contenedor con borde blanco + efecto luz */
+.ads-img-wrapper {
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  background-color: #1f1f1f;
+  padding: 8px;
+  animation: resaltar 1.5s infinite;  /* 👈 efecto de luz aquí */
+}
+
+/* 🔹 solo la imagen se baja */
+.ads-img-wrapper img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 30px;  /* 👈 baja solo la imagen, no el borde */
+}
+
+/* 🔹 Animación de luz */
+@keyframes resaltar {
+  0%   { box-shadow: 0 0 5px #ffffff; }
+  50%  { box-shadow: 0 0 20px #ffffff; }
+  100% { box-shadow: 0 0 5px #ffffff; }
+}
+
+/* 🔹 etiqueta Workspace centrada */
+.ads h3 {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+  background-color: #00cfff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  white-space: nowrap;
+}
+
+  font-weight: bold;
+  color: #000;
+  background-color: #00cfff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  white-space: nowrap;
+}
+
+}

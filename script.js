@@ -1,31 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const pageKey = location.pathname;
+document.addEventListener("DOMContentLoaded", function () {
+    var pageKey = location.pathname;
     document.getElementById('banner').classList.add('visible');
 
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const pagination = document.getElementById('pagination');
-    const paginationHeader = document.getElementById('pagination-header');
-    const searchResultsContainer = document.getElementById('searchResultsContainer');
-    const infantilContainer = document.getElementById('infantilContainer');
-    const categoriaTitulo = document.getElementById('categoriaTitulo');
-    const mainPagination = document.getElementById('main-pagination');
-    const itemsPerPage = 10;
-    let filteredResults = [];
-    let allInfantilCards = [];
+    var searchInput = document.getElementById('searchInput');
+    var searchBtn = document.getElementById('searchBtn');
+    var pagination = document.getElementById('pagination');
+    var paginationHeader = document.getElementById('pagination-header');
+    var searchResultsContainer = document.getElementById('searchResultsContainer');
+    var infantilContainer = document.getElementById('infantilContainer');
+    var categoriaTitulo = document.getElementById('categoriaTitulo');
+    var mainPagination = document.getElementById('main-pagination');
+    var itemsPerPage = 10;
+    var filteredResults = [];
+    var allInfantilCards = [];
 
     // ========================
     // Contador de visitas
     // ========================
-    const visitSpan = document.getElementById('visitCount');
-    const STORAGE_KEY = 'visitCount';
-    let visitCount = localStorage.getItem(STORAGE_KEY);
-    visitCount = visitCount === null ? 5555 : parseInt(visitCount, 10);
-    visitSpan.textContent = visitCount.toString().padStart(8, '0');
-    setInterval(() => {
+    var visitSpan = document.getElementById('visitCount');
+    var STORAGE_KEY = 'visitCount';
+    var visitCount = localStorage.getItem(STORAGE_KEY);
+    visitCount = visitCount === null ? 3000 : parseInt(visitCount, 10);
+    visitSpan.textContent = ('00000000' + visitCount).slice(-8);
+    setInterval(function () {
         visitCount++;
         localStorage.setItem(STORAGE_KEY, visitCount);
-        visitSpan.textContent = visitCount.toString().padStart(8, '0');
+        visitSpan.textContent = ('00000000' + visitCount).slice(-8);
     }, 60000);
 
     // ========================
@@ -35,38 +35,33 @@ document.addEventListener("DOMContentLoaded", () => {
         pagination.innerHTML = "";
         pagination.style.display = totalPages > 1 ? "block" : "none";
 
-        const createBtn = (text, page, isActive = false, isDisabled = false) => {
-            const btn = document.createElement("a");
+        function createBtn(text, page, isActive, isDisabled) {
+            if (isActive === undefined) isActive = false;
+            if (isDisabled === undefined) isDisabled = false;
+
+            var btn = document.createElement("a");
             btn.textContent = text;
             btn.href = "#";
-            btn.style.cssText = `
-                padding: 6px 12px;
-                background: ${isActive ? "#00aaff" : "#222"};
-                color: white;
-                text-decoration: none;
-                border-radius: 4px;
-                border: 2px solid #00aaff;
-                margin: 2px;
-                font-weight: bold;
-                font-family: sans-serif;
-                opacity: ${isDisabled ? "0.5" : "1"};
-                pointer-events: ${isDisabled ? "none" : "auto"};
-            `;
+            btn.style.cssText =
+                "padding: 6px 12px; background: " + (isActive ? "#00aaff" : "#222") +
+                "; color: white; text-decoration: none; border-radius: 4px; border: 2px solid #00aaff; margin: 2px; font-weight: bold; font-family: sans-serif;" +
+                "opacity: " + (isDisabled ? "0.5" : "1") +
+                "; pointer-events: " + (isDisabled ? "none" : "auto") + ";";
             if (!isDisabled && page !== null) {
-                btn.addEventListener("click", (e) => {
+                btn.addEventListener("click", function (e) {
                     e.preventDefault();
                     callback(page);
                 });
             }
             return btn;
-        };
+        }
 
         if (currentPage > 1) pagination.appendChild(createBtn("Anterior", currentPage - 1));
         if (currentPage > 3) {
             pagination.appendChild(createBtn("1", 1));
             if (currentPage > 4) pagination.appendChild(createBtn("...", null, false, true));
         }
-        for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+        for (var i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
             pagination.appendChild(createBtn(i, i, i === currentPage));
         }
         if (currentPage < totalPages - 2) {
@@ -80,164 +75,176 @@ document.addEventListener("DOMContentLoaded", () => {
     // Mostrar página infantil
     // ========================
     function showInfantilPage(page) {
-        const totalPages = Math.ceil(allInfantilCards.length / itemsPerPage);
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        allInfantilCards.forEach((card, index) => {
+        var totalPages = Math.ceil(allInfantilCards.length / itemsPerPage);
+        var start = (page - 1) * itemsPerPage;
+        var end = start + itemsPerPage;
+        allInfantilCards.forEach(function (card, index) {
             card.style.display = (index >= start && index < end) ? 'flex' : 'none';
         });
 
         renderPagination(page, totalPages, showInfantilPage);
-        paginationHeader.textContent = `PÁGINA ${page} DE ${totalPages}`;
+        paginationHeader.textContent = "PÁGINA " + page + " DE " + totalPages;
         paginationHeader.style.display = totalPages > 1 ? "block" : "none";
         mainPagination.style.display = "block";
+
+        // Guardar página actual de categoría
+        localStorage.setItem(pageKey + "_lastCategoryPage", page);
     }
 
     // ========================
-    // Cargar data.json (MOVIL + scroll)
+    // Determinar ruta del JSON automáticamente
     // ========================
-    fetch('../../data.json')
-        .then(response => response.json())
-        .then(data => {
-            const scrollWrapper = document.getElementById('scrollWrapper');
+    var pathLevels = location.pathname.split("/").filter(Boolean);
+    var jsonPath = "";
+    if (pathLevels.includes("peliculas") || pathLevels.includes("series")) {
+        jsonPath = new Array(pathLevels.length - 1).fill("..").join("/") + "/data.json";
+    } else {
+        jsonPath = "data.json";
+    }
 
-            data.MOVIL.slice(0, 10).forEach(image => {
-                const imgElement = document.createElement('img');
+    // ========================
+    // Cargar data.json
+    // ========================
+    fetch(jsonPath)
+        .then(response => response.json())
+        .then(function (data) {
+            var scrollWrapper = document.getElementById('scrollWrapper');
+
+            // Scroll MOVIL
+            data.MOVIL.slice(0, 10).forEach(function (image) {
+                var imgElement = document.createElement('img');
                 imgElement.src = image.image;
                 imgElement.alt = image.title;
                 imgElement.classList.add('scroll-item');
 
-                const enlaceMobile = document.createElement('a');
+                var enlaceMobile = document.createElement('a');
                 enlaceMobile.href = image.url;
                 enlaceMobile.target = '_self';
                 enlaceMobile.appendChild(imgElement);
 
                 scrollWrapper.appendChild(enlaceMobile);
             });
+            // Duplicado para bucle infinito
+            data.MOVIL.slice(0, 10).forEach(function (image) {
+                var imgElement2 = document.createElement('img');
+                imgElement2.src = image.image;
+                imgElement2.alt = image.title;
+                imgElement2.classList.add('scroll-item');
 
-// Duplicado para efecto de bucle infinito
-        data.MOVIL.slice(0, 10).forEach(image => {
-            const imgElement = document.createElement('img');
-            imgElement.src = image.image;
-            imgElement.alt = image.title;
-            imgElement.classList.add('scroll-item');
+                var enlaceMobile2 = document.createElement('a');
+                enlaceMobile2.href = image.url;
+                enlaceMobile2.target = '_self';
+                enlaceMobile2.appendChild(imgElement2);
 
-            const enlaceMobile = document.createElement('a');
-            enlaceMobile.href = image.url;
-            enlaceMobile.target = '_self';
-            enlaceMobile.appendChild(imgElement);
+                scrollWrapper.appendChild(enlaceMobile2);
+            });
 
-            scrollWrapper.appendChild(enlaceMobile);
-        });
+            var category = document.body.getAttribute("data-category");
 
-            const category = document.body.getAttribute("data-category");
-
-if (data[category]) {
-    data[category].forEach(movie => {
-        const card = document.createElement('div');
-        card.classList.add('movie-card');
-
-        const link = document.createElement('a');
-        link.href = movie.url;
-        link.target = '_self';
-
-        const img = document.createElement('img');
-        img.src = movie.image;
-        img.alt = movie.title;
-
-        const overlay = document.createElement('div');
-        overlay.classList.add('title-overlay');
-        overlay.textContent = movie.title;
-
-        const titleDiv = document.createElement('div');
-        titleDiv.classList.add('movie-title');
-        titleDiv.textContent = movie.title;
-
-        link.appendChild(img);
-        link.appendChild(overlay);
-        link.appendChild(titleDiv);
-        card.appendChild(link);
-
-        infantilContainer.appendChild(card);
-        allInfantilCards.push(card);
-    });
-
-    showInfantilPage(1);
-}
-
-
-    // ========================
-    // Mostrar página de búsqueda
-    // ========================
-    function showSearchPage(page) {
-        const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
-        const start = (page - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        filteredResults.forEach(card => card.style.display = 'none');
-        filteredResults.slice(start, end).forEach(card => card.style.display = 'flex');
-
-        renderPagination(page, totalPages, showSearchPage);
-        paginationHeader.textContent = `PÁGINA ${page} DE ${totalPages}`;
-        paginationHeader.style.display = "block";
-    }
-
-    // ========================
-    // Filtrar búsqueda
-    // ========================
-    function filterMovies() {
-        const query = searchInput.value.toLowerCase().trim();
-        const resultMsg = document.getElementById('search-result-msg');
-        const resultTitle = document.getElementById('search-result-title');
-        const resultImage = document.getElementById('search-result-image');
-        const resultNoResult = document.getElementById('search-result-noresult');
-        const resultDesc = document.getElementById('search-result-desc');
-
-        if (categoriaTitulo) categoriaTitulo.style.display = query === "" ? 'block' : 'none';
-
-        if (query === "") {
-            document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'flex');
-            pagination.style.display = "none";
-            mainPagination.style.display = "block";
-            resultMsg.style.display = "none";
-            paginationHeader.style.display = "none";
-            searchResultsContainer.innerHTML = "";
-            localStorage.removeItem(pageKey + "_lastSearchQuery");
-            localStorage.removeItem(pageKey + "_lastSearchPage");
-            showInfantilPage(1);
-            return;
-        }
-
-        localStorage.setItem(pageKey + "_lastSearchQuery", query);
-        localStorage.setItem(pageKey + "_lastSearchPage", 1);
-
-        document.querySelectorAll('.movie-card').forEach(card => card.style.display = 'none');
-        mainPagination.style.display = "none";
-        resultMsg.style.display = "block";
-        searchResultsContainer.innerHTML = "";
-
-        fetch('peliculastodas.json')
-            .then(response => response.json())
-            .then(data => {
-                const matched = (data.TODAS || []).filter(p => p.title.toLowerCase().includes(query));
-                filteredResults = [];
-
-                matched.forEach(movie => {
-                    const card = document.createElement('div');
+            if (data[category]) {
+                data[category].forEach(function (movie) {
+                    var card = document.createElement('div');
                     card.classList.add('movie-card');
 
-                    const link = document.createElement('a');
+                    var link = document.createElement('a');
                     link.href = movie.url;
                     link.target = '_self';
 
-                    const img = document.createElement('img');
+                    var img = document.createElement('img');
                     img.src = movie.image;
                     img.alt = movie.title;
 
-                    const overlay = document.createElement('div');
+                    var overlay = document.createElement('div');
                     overlay.classList.add('title-overlay');
                     overlay.textContent = movie.title;
 
-                    const titleDiv = document.createElement('div');
+                    var titleDiv = document.createElement('div');
+                    titleDiv.classList.add('movie-title');
+                    titleDiv.textContent = movie.title;
+
+                    link.appendChild(img);
+                    link.appendChild(overlay);
+                    link.appendChild(titleDiv);
+                    card.appendChild(link);
+
+                    infantilContainer.appendChild(card);
+                    allInfantilCards.push(card);
+                });
+            }
+
+            // ========================
+            // Función de búsqueda global
+            // ========================
+            function showSearchPage(page) {
+                var totalPages = Math.ceil(filteredResults.length / itemsPerPage);
+                var start = (page - 1) * itemsPerPage;
+                var end = start + itemsPerPage;
+                filteredResults.forEach(function (card) { card.style.display = 'none'; });
+                filteredResults.slice(start, end).forEach(function (card) { card.style.display = 'flex'; });
+
+                renderPagination(page, totalPages, showSearchPage);
+                paginationHeader.textContent = "PÁGINA " + page + " DE " + totalPages;
+                paginationHeader.style.display = "block";
+
+                // Guardar página actual de búsqueda
+                localStorage.setItem(pageKey + "_lastSearchPage", page);
+            }
+
+            function filterMovies() {
+                var query = searchInput.value.toLowerCase().trim();
+                var resultMsg = document.getElementById('search-result-msg');
+                var resultTitle = document.getElementById('search-result-title');
+                var resultImage = document.getElementById('search-result-image');
+                var resultNoResult = document.getElementById('search-result-noresult');
+                var resultDesc = document.getElementById('search-result-desc');
+
+                if (categoriaTitulo) categoriaTitulo.style.display = query === "" ? 'block' : 'none';
+
+                if (query === "") {
+                    allInfantilCards.forEach(card => card.style.display = 'flex');
+                    pagination.style.display = "none";
+                    mainPagination.style.display = "block";
+                    resultMsg.style.display = "none";
+                    paginationHeader.style.display = "none";
+                    searchResultsContainer.innerHTML = "";
+
+                    localStorage.removeItem(pageKey + "_lastSearchQuery");
+                    localStorage.removeItem(pageKey + "_lastSearchPage");
+
+                    // Volver a la página 1 de la categoría
+                    showInfantilPage(1);
+
+                    return;
+                }
+
+                localStorage.setItem(pageKey + "_lastSearchQuery", query);
+                localStorage.setItem(pageKey + "_lastSearchPage", 1);
+
+                allInfantilCards.forEach(card => card.style.display = 'none');
+                mainPagination.style.display = "none";
+                resultMsg.style.display = "block";
+                searchResultsContainer.innerHTML = "";
+
+                var matched = (data.TODAS || []).filter(p => p.title.toLowerCase().includes(query));
+                filteredResults = [];
+
+                matched.forEach(function (movie) {
+                    var card = document.createElement('div');
+                    card.classList.add('movie-card');
+
+                    var link = document.createElement('a');
+                    link.href = movie.url;
+                    link.target = '_self';
+
+                    var img = document.createElement('img');
+                    img.src = movie.image;
+                    img.alt = movie.title;
+
+                    var overlay = document.createElement('div');
+                    overlay.classList.add('title-overlay');
+                    overlay.textContent = movie.title;
+
+                    var titleDiv = document.createElement('div');
                     titleDiv.classList.add('movie-title');
                     titleDiv.textContent = movie.title;
 
@@ -250,12 +257,12 @@ if (data[category]) {
                     searchResultsContainer.appendChild(card);
                 });
 
-                resultTitle.textContent = `Resultados para: "${query}"`;
+                resultTitle.textContent = "Resultados para: \"" + query + "\"";
 
                 if (filteredResults.length > 0) {
                     resultImage.style.display = "none";
                     resultNoResult.textContent = "";
-                    resultDesc.textContent = `${filteredResults.length} resultados encontrados.`;
+                    resultDesc.textContent = filteredResults.length + " resultados encontrados.";
                     showSearchPage(1);
                 } else {
                     pagination.style.display = "none";
@@ -264,44 +271,43 @@ if (data[category]) {
                     resultNoResult.textContent = "No se encontraron coincidencias";
                     resultDesc.textContent = "Lo sentimos, pero nada coincide con sus términos de búsqueda.";
                 }
-            });
-    }
-
-    searchBtn.addEventListener('click', filterMovies);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            filterMovies();
-        }
-    });
-
-    // ========================
-    // Restaurar búsqueda si hay datos previos
-    // ========================
-    const sessionKey = pageKey + "_sessionActive";
-    if (!sessionStorage.getItem(sessionKey)) {
-        localStorage.removeItem(pageKey + "_lastSearchQuery");
-        localStorage.removeItem(pageKey + "_lastSearchPage");
-        sessionStorage.setItem(sessionKey, "true");
-    }
-
-    function restoreSearch() {
-        const savedQuery = localStorage.getItem(pageKey + "_lastSearchQuery");
-        const savedPage = parseInt(localStorage.getItem(pageKey + "_lastSearchPage"), 10) || 1;
-        if (savedQuery && savedQuery !== "") {
-            searchInput.value = savedQuery;
-            filterMovies();
-            if (filteredResults.length > 0 && savedPage > 1) {
-                showSearchPage(savedPage);
             }
-        }
-    }
 
-    restoreSearch();
+            searchBtn.addEventListener('click', filterMovies);
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    filterMovies();
+                }
+            });
 
-    window.addEventListener("pageshow", (event) => {
-        if (event.persisted) {
+            // ========================
+            // Restaurar búsqueda y página
+            // ========================
+            function restoreSearch() {
+                var savedQuery = localStorage.getItem(pageKey + "_lastSearchQuery");
+                var savedSearchPage = parseInt(localStorage.getItem(pageKey + "_lastSearchPage"), 10) || 1;
+                var savedCategoryPage = parseInt(localStorage.getItem(pageKey + "_lastCategoryPage"), 10) || 1;
+
+                if (savedQuery && savedQuery !== "") {
+                    searchInput.value = savedQuery;
+                    filterMovies();
+                    if (filteredResults.length > 0) {
+                        showSearchPage(savedSearchPage);
+                    }
+                } else {
+                    // Mostrar página de categoría guardada
+                    showInfantilPage(savedCategoryPage);
+                }
+            }
+
             restoreSearch();
-        }
-    });
+
+            window.addEventListener("pageshow", function (event) {
+                if (event.persisted) {
+                    restoreSearch();
+                }
+            });
+        })
+        .catch(err => console.error("Error cargando JSON:", err));
 });
