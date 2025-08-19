@@ -3,7 +3,9 @@
     {
       "title": "Película 1",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/pelicula1"
+      "url": "https://www.example.com/pelicula1",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película 2",
@@ -61,57 +63,79 @@
     {
       "title": "Película Infantil 1",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil1"
+      "url": "https://www.example.com/infantil1",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 2",
       "image": "image/pelicula2.jpg",
-      "url": "https://www.example.com/infantil2"
+      "url": "https://www.example.com/infantil2",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 3",
       "image": "image/pelicula10.jpg",
-      "url": "https://www.example.com/infantil3"
+      "url": "https://www.example.com/infantil3",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 4",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil4"
+      "url": "https://www.example.com/infantil4",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 5",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil5"
+      "url": "https://www.example.com/infantil5",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 6",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil6"
+      "url": "https://www.example.com/infantil6",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 7",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil7"
+      "url": "https://www.example.com/infantil7",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 8",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil8"
+      "url": "https://www.example.com/infantil8",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 9",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil9"
+      "url": "https://www.example.com/infantil9",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 10",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil10"
+      "url": "https://www.example.com/infantil10",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película Infantil 11",
       "image": "image/pelicula1.jpg",
-      "url": "https://www.example.com/infantil11"
+      "url": "https://www.example.com/infantil11",
+      "year": "2000",
+      "quality": "1080p"
     }
   ],
 
@@ -119,7 +143,9 @@
     {
       "title": "13 Fantasmas (2000)",
       "image": "image/terror1.jpg",
-      "url": "https://www.example.com/terror1"
+      "url": "https://www.example.com/terror1",
+      "year": "2000",
+      "quality": "FHD"
     },
     {
       "title": "Película de Terror 2Película de Terror 2",
@@ -233,9 +259,11 @@
 
 "TODAS": [    
     {
-      "title": "Película 1",
+      "title": "13 Fantasmas",
       "image": "image/terror1.jpg",
-      "url": "https://www.example.com/pelicula1"
+      "url": "https://www.example.com/pelicula1",
+      "year": "2000",
+      "quality": "1080p"
     },
     {
       "title": "Película 2",

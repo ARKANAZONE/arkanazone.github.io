@@ -87,12 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
         paginationHeader.style.display = totalPages > 1 ? "block" : "none";
         mainPagination.style.display = "block";
 
-        // Guardar página actual de categoría
         localStorage.setItem(pageKey + "_lastCategoryPage", page);
     }
 
     // ========================
-    // Determinar ruta del JSON automáticamente
+    // Determinar ruta del JSON
     // ========================
     var pathLevels = location.pathname.split("/").filter(Boolean);
     var jsonPath = "";
@@ -110,41 +109,75 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(function (data) {
             var scrollWrapper = document.getElementById('scrollWrapper');
 
-            // Scroll MOVIL
+            // 🔹 Portadas móviles
             data.MOVIL.slice(0, 10).forEach(function (image) {
-                var imgElement = document.createElement('img');
-                imgElement.src = image.image;
-                imgElement.alt = image.title;
-                imgElement.classList.add('scroll-item');
+    // Contenedor scroll-item
+    var div = document.createElement('div');
+    div.classList.add('scroll-item');
 
-                var enlaceMobile = document.createElement('a');
-                enlaceMobile.href = image.url;
-                enlaceMobile.target = '_self';
-                enlaceMobile.appendChild(imgElement);
+    // Imagen
+    var imgElement = document.createElement('img');
+    imgElement.src = image.image;
+    imgElement.alt = image.title;
+    div.appendChild(imgElement);
 
-                scrollWrapper.appendChild(enlaceMobile);
-            });
-            // Duplicado para bucle infinito
+    // Movie info: calidad y año
+    var infoDiv = document.createElement('div');
+    infoDiv.classList.add('movie-info');
+    infoDiv.innerHTML = `
+        <span class="quality">${image.quality || ''}</span>
+        <span class="year">${image.year || ''}</span>
+    `;
+    div.appendChild(infoDiv);
+
+    // Enlace
+    var enlaceMobile = document.createElement('a');
+    enlaceMobile.href = image.url;
+    enlaceMobile.target = '_self';
+    enlaceMobile.appendChild(div);
+
+    scrollWrapper.appendChild(enlaceMobile);
+});
+
+
+// 🔹 Portadas móviles
             data.MOVIL.slice(0, 10).forEach(function (image) {
-                var imgElement2 = document.createElement('img');
-                imgElement2.src = image.image;
-                imgElement2.alt = image.title;
-                imgElement2.classList.add('scroll-item');
+    // Contenedor scroll-item
+    var div = document.createElement('div');
+    div.classList.add('scroll-item');
 
-                var enlaceMobile2 = document.createElement('a');
-                enlaceMobile2.href = image.url;
-                enlaceMobile2.target = '_self';
-                enlaceMobile2.appendChild(imgElement2);
+    // Imagen
+    var imgElement = document.createElement('img');
+    imgElement.src = image.image;
+    imgElement.alt = image.title;
+    div.appendChild(imgElement);
 
-                scrollWrapper.appendChild(enlaceMobile2);
-            });
+    // Movie info: calidad y año
+    var infoDiv = document.createElement('div');
+    infoDiv.classList.add('movie-info');
+    infoDiv.innerHTML = `
+        <span class="quality">${image.quality || ''}</span>
+        <span class="year">${image.year || ''}</span>
+    `;
+    div.appendChild(infoDiv);
+
+    // Enlace
+    var enlaceMobile = document.createElement('a');
+    enlaceMobile.href = image.url;
+    enlaceMobile.target = '_self';
+    enlaceMobile.appendChild(div);
+
+    scrollWrapper.appendChild(enlaceMobile);
+});
 
             var category = document.body.getAttribute("data-category");
 
+            // 🔹 Portadas categoría/infantil con calidad y año
             if (data[category]) {
                 data[category].forEach(function (movie) {
                     var card = document.createElement('div');
                     card.classList.add('movie-card');
+                    card.style.position = "relative"; // necesario para posicionar .movie-info
 
                     var link = document.createElement('a');
                     link.href = movie.url;
@@ -162,10 +195,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     titleDiv.classList.add('movie-title');
                     titleDiv.textContent = movie.title;
 
+                    // 👉 Agregar calidad y año
+                    var infoDiv = document.createElement('div');
+                    infoDiv.classList.add('movie-info');
+                    infoDiv.innerHTML = `
+                        <span class="quality">${movie.quality || ''}</span>
+                        <span class="year">${movie.year || ''}</span>
+                    `;
+
                     link.appendChild(img);
                     link.appendChild(overlay);
-                    link.appendChild(titleDiv);
+
                     card.appendChild(link);
+                    card.appendChild(infoDiv);
+                    card.appendChild(titleDiv);
 
                     infantilContainer.appendChild(card);
                     allInfantilCards.push(card);
@@ -173,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // ========================
-            // Función de búsqueda global
+            // Función de búsqueda
             // ========================
             function showSearchPage(page) {
                 var totalPages = Math.ceil(filteredResults.length / itemsPerPage);
@@ -186,7 +229,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 paginationHeader.textContent = "PÁGINA " + page + " DE " + totalPages;
                 paginationHeader.style.display = "block";
 
-                // Guardar página actual de búsqueda
                 localStorage.setItem(pageKey + "_lastSearchPage", page);
             }
 
@@ -211,9 +253,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.removeItem(pageKey + "_lastSearchQuery");
                     localStorage.removeItem(pageKey + "_lastSearchPage");
 
-                    // Volver a la página 1 de la categoría
                     showInfantilPage(1);
-
                     return;
                 }
 
@@ -231,6 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 matched.forEach(function (movie) {
                     var card = document.createElement('div');
                     card.classList.add('movie-card');
+                    card.style.position = "relative";
 
                     var link = document.createElement('a');
                     link.href = movie.url;
@@ -248,10 +289,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     titleDiv.classList.add('movie-title');
                     titleDiv.textContent = movie.title;
 
+                    var infoDiv = document.createElement('div');
+                    infoDiv.classList.add('movie-info');
+                    infoDiv.innerHTML = `
+                        <span class="quality">${movie.quality || ''}</span>
+                        <span class="year">${movie.year || ''}</span>
+                    `;
+
                     link.appendChild(img);
                     link.appendChild(overlay);
-                    link.appendChild(titleDiv);
+
                     card.appendChild(link);
+                    card.appendChild(infoDiv);
+                    card.appendChild(titleDiv);
 
                     filteredResults.push(card);
                     searchResultsContainer.appendChild(card);
@@ -281,9 +331,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
-            // ========================
-            // Restaurar búsqueda y página
-            // ========================
             function restoreSearch() {
                 var savedQuery = localStorage.getItem(pageKey + "_lastSearchQuery");
                 var savedSearchPage = parseInt(localStorage.getItem(pageKey + "_lastSearchPage"), 10) || 1;
@@ -296,17 +343,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         showSearchPage(savedSearchPage);
                     }
                 } else {
-                    // Mostrar página de categoría guardada
                     showInfantilPage(savedCategoryPage);
                 }
             }
 
             restoreSearch();
-
             window.addEventListener("pageshow", function (event) {
-                if (event.persisted) {
-                    restoreSearch();
-                }
+                if (event.persisted) restoreSearch();
             });
         })
         .catch(err => console.error("Error cargando JSON:", err));
