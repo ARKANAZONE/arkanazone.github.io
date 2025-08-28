@@ -9,18 +9,67 @@ body {
 }
 
 /* Cabecera */
-
-/* Centrado de los elementos en la cabecera */
+/* Cabecera */
 header {
+    position: relative;
     display: flex;
-    justify-content: center; /* Centra todo el contenido */
+    justify-content: center;
     align-items: center;
-    flex-direction: column; /* Alineación vertical */
+    flex-direction: column;
     padding-top: 5px;
     padding-right: 0;
     padding-bottom: 5px;
     padding-left: 0;
-    text-align: center; /* Asegura que el texto se centre */
+    text-align: center;
+    height: 40vh; /* Ajusta la altura del encabezado */
+    overflow: hidden;
+}
+
+/* Fondo dinámico con carrusel de imágenes */
+header .header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover; /* Asegura que las imágenes de fondo cubran todo el espacio */
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    animation: fadeSlide 20s infinite; /* Cambiar imágenes cada 20 segundos */
+    opacity: 1;
+    z-index: -1; /* Coloca el fondo debajo del contenido */
+}
+
+/* Animación para el carrusel de imágenes */
+@keyframes fadeSlide {
+    0% {
+        background-image: url('https://image.tmdb.org/t/p/original/ZtcGMc204JsNqfjS9lU6udRgpo.jpg');
+        opacity: 1;
+    }
+    25% {
+        background-image: url('https://image.tmdb.org/t/p/original/rNZ1j18l5J3upEcDGuW821Bkkwc.jpg');
+        opacity: 1;
+    }
+    50% {
+        background-image: url('https://image.tmdb.org/t/p/original/msM0ecNctEQo7IYR9rJfhYn6i2k.jpg');
+        opacity: 1;
+    }
+    75% {
+        background-image: url('https://image.tmdb.org/t/p/original/o74jujryamQ0Woyi9ekXfmdJ5P1.jpg');
+        opacity: 1;
+    }
+    100% {
+        background-image: url('https://image.tmdb.org/t/p/original/ZtcGMc204JsNqfjS9lU6udRgpo.jpg');
+        opacity: 1;
+    }
+}
+
+/* Estilos para el contenido dentro del encabezado */
+.header-content {
+    position: relative;
+    z-index: 10; /* Coloca el texto encima del fondo */
+    color: white;
+    padding-top: 20px;
 }
 
 /* Estilos para el título principal */
@@ -57,7 +106,6 @@ header {
 
 .header-title .celeste {
     color: #00BFFF;
-
 }
 
 .fade-slide {
@@ -162,14 +210,14 @@ nav {
 border: 1px solid #FFFFFF;
   flex-shrink: 0;
   overflow: hidden;
-object-fit: cover;  /* la imagen se ajusta sin deformarse */
 }
 
 .scroll-item img {
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 6px;
-  object-fit: cover;  /* la imagen se ajusta sin deformarse */
+  object-fit: contain;  /* la imagen se ajusta sin deformarse */
+  display: block
 }
 
 .scroll-item .movie-info {
@@ -255,7 +303,7 @@ object-fit: cover;  /* la imagen se ajusta sin deformarse */
     }
 
     .left-column {
-      flex: 1 1 auto;
+      flex: 0 0 900px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px 15px;
@@ -264,7 +312,7 @@ object-fit: cover;  /* la imagen se ajusta sin deformarse */
 
 .movie-card img { 
 width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */ 
-height: auto; /* Mantiene la proporción de la imagen */ 
+height: 100%; /* Mantiene la proporción de la imagen */ 
 object-fit: contain; /* Hace que la imagen se ajuste sin cortar */
       border: 1px solid #FFFFFF;
       border-radius: 6px;
@@ -274,6 +322,7 @@ object-fit: contain; /* Hace que la imagen se ajuste sin cortar */
 
 .movie-card { 
 width: 160px; 
+height: auto;
 position: relative; /* esto es necesario para que .movie-info se ubique correctamente */ 
 text-align: center; 
 cursor: pointer; 
@@ -569,4 +618,24 @@ border-radius: 6px; /* 🔹 Redondea el contenedor */
     color: #fff;
     padding: 2px 5px;
     border-radius: 3px;
+}
+
+/* Estilo para la puntuación IMDB */
+.imdb-rating {
+    font-size: 14px; /* Ajusta el tamaño del texto */
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+    padding: 8px;
+    border-radius: 50%; /* Hace que el contorno sea circular */
+    width: 35px; /* Ajusta el tamaño del círculo */
+    height: 35px; /* Ajusta el tamaño del círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra el número dentro del círculo */
+    position: absolute;
+    top: 200px; /* Ajusta la distancia desde el borde inferior */
+    right: 10px; /* Ajusta la distancia desde el borde derecho */
+    border: 2px solid #00cfff; /* Opcional: Agregar borde celeste */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
 }
